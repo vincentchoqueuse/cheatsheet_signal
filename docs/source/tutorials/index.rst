@@ -8,3 +8,4 @@ Tutorials
    fourier_series
    filter_design
    fourier_transform_rect
+   non_parametric_spectral_analysis

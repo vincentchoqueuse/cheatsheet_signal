@@ -1,17 +1,18 @@
 Synthèse d'un Filtre Numérique
 ==============================
 
-Ce tutorial montre comment implémenter un filtre numérique. 
+Ce tutorial montre comment implémenter un filtre numérique en C. Pour obtenir les coefficients du filtre, nous allons utiliser dans un 
+premier temps Python et les fonctionnalité de Scipy.
 
 Cahier des charges
 ------------------
 
 Le cahier des charges du filtre est spécifié ci-dessous :
 
-* Fréquence de coupure: 4 kHz,
-* Fréquence d'échantillonnage: 44.1 kHz,
-* Type: Passe-bas, 
-* Ordre: 4.
+    * Fréquence de coupure: 4 kHz,
+    * Fréquence d'échantillonnage: 44.1 kHz,
+    * Type: Passe-bas, 
+    * Ordre: 4.
 
 Synthèse de filtre
 ------------------
@@ -86,8 +87,8 @@ Nous observons bien une réduction de l'amplitude de -3dB lorsque la fréquence 
     plt.grid()
     plt.legend()
 
-Implémentation 
---------------
+Implémentation C
+----------------
 
 Le code suivant montre comment implémenter le filtre en langage C. 
 
