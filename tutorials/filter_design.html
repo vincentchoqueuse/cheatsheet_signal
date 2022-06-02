@@ -183,6 +183,11 @@
    Simulation
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implémentation
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -281,6 +286,53 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
 <figure class="align-default">
 <img alt="../_images/filter_design-2.png" class="plot-directive" src="../_images/filter_design-2.png" />
 </figure>
+</section>
+<section id="implementation">
+<h2>Implémentation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
+<p>Le code suivant montre comment implémenter le filtre en langage C.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* Function: iir_filter</span>
+<span class="cm">* --------------------</span>
+<span class="cm">*   Apply a filter</span>
+<span class="cm">*</span>
+<span class="cm">*   input: the buffer with input samples</span>
+<span class="cm">*   output: the output buffer</span>
+<span class="cm">*   states; an array containing the filter state (previous inputs and outputs)</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">iir_filter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">states</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.00345416</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01381663</span><span class="p">,</span><span class="w"> </span><span class="mf">0.02072494</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01381663</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00345416</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">coef_a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.5194645</span><span class="w"> </span><span class="p">,</span><span class="w">  </span><span class="mf">2.56083711</span><span class="p">,</span><span class="w"> </span><span class="mf">-1.20623537</span><span class="p">,</span><span class="w">  </span><span class="mf">0.22012927</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//compute filer outputs</span>
+<span class="w">        </span><span class="n">output</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">input</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">+</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">+</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">+</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">+</span><span class="w"> </span><span class="n">coef_b</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">-</span><span class="w"> </span><span class="n">coef_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">-</span><span class="w"> </span><span class="n">coef_a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">-</span><span class="w"> </span><span class="n">coef_a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"></span>
+<span class="w">                  </span><span class="o">-</span><span class="w"> </span><span class="n">coef_a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">states</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">//update filter states</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">states</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">states</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">n</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">states</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">[</span><span class="n">n</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
 </section>
 

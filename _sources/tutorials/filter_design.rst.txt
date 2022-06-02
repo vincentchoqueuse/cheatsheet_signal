@@ -84,3 +84,54 @@ Nous observons bien une réduction de l'amplitude de -3dB lorsque la fréquence 
     plt.xlim([0, 0.005])
     plt.grid()
     plt.legend()
+
+Implémentation 
+--------------
+
+Le code suivant montre comment implémenter le filtre en langage C. 
+
+
+.. code :: c
+
+
+    /*
+    * Function: iir_filter
+    * --------------------
+    *   Apply a filter
+    *
+    *   input: the buffer with input samples 
+    *   output: the output buffer
+    *   states; an array containing the filter state (previous inputs and outputs)
+    */
+
+    void
+    iir_filter(const double *input, 
+              double *output,
+              double *states,
+              int N)
+    {
+        double coef_b[5]= {0.00345416, 0.01381663, 0.02072494, 0.01381663, 0.00345416};
+        double coef_a[5]= {1., -2.5194645 ,  2.56083711, -1.20623537,  0.22012927};
+
+        for(int n=0; n<N; n++)
+        {
+            //compute filer outputs
+            output[n] = coef_b[0]*input[n]
+                      + coef_b[1]*states[0] 
+                      + coef_b[2]*states[1] 
+                      + coef_b[3]*states[2] 
+                      + coef_b[4]*states[3] 
+                      - coef_a[1]*states[4]
+                      - coef_a[2]*states[5]
+                      - coef_a[3]*states[6] 
+                      - coef_a[4]*states[7]; 
+
+            //update filter states
+            for (int i=6; i>=0; i--)
+                {
+                states[i+1] = states[i];
+                }
+            states[0] = input[n];
+            states[4] = output[n];
+        }
+    }
