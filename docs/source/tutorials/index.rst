@@ -7,3 +7,4 @@ Tutorials
 
    fourier_series
    filter_design
+   fourier_transform_rect

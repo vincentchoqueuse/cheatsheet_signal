@@ -131,7 +131,7 @@ Porte rectangulaire
     :include-source:
 
     L=1.2
-    p = np.abs(t)< L
+    p = np.abs(t)< (L/2)
 
     plt.plot(t,p)
     plt.grid()
