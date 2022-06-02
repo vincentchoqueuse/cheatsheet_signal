@@ -150,6 +150,11 @@
    Transformée de Fourier d’une Porte
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_parametric_spectral_analysis.html">
+   Analyse Spectrale
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -189,8 +194,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation">
-   Implémentation
+  <a class="reference internal nav-link" href="#implementation-c">
+   Implémentation C
   </a>
  </li>
 </ul>
@@ -216,16 +221,19 @@
                 
   <section id="synthese-d-un-filtre-numerique">
 <h1>Synthèse d’un Filtre Numérique<a class="headerlink" href="#synthese-d-un-filtre-numerique" title="Permalink to this headline">#</a></h1>
-<p>Ce tutorial montre comment implémenter un filtre numérique.</p>
+<p>Ce tutorial montre comment implémenter un filtre numérique en C. Pour obtenir les coefficients du filtre, nous allons utiliser dans un
+premier temps Python et les fonctionnalité de Scipy.</p>
 <section id="cahier-des-charges">
 <h2>Cahier des charges<a class="headerlink" href="#cahier-des-charges" title="Permalink to this headline">#</a></h2>
 <p>Le cahier des charges du filtre est spécifié ci-dessous :</p>
-<ul class="simple">
+<blockquote>
+<div><ul class="simple">
 <li><p>Fréquence de coupure: 4 kHz,</p></li>
 <li><p>Fréquence d’échantillonnage: 44.1 kHz,</p></li>
 <li><p>Type: Passe-bas,</p></li>
 <li><p>Ordre: 4.</p></li>
 </ul>
+</div></blockquote>
 </section>
 <section id="synthese-de-filtre">
 <h2>Synthèse de filtre<a class="headerlink" href="#synthese-de-filtre" title="Permalink to this headline">#</a></h2>
@@ -293,8 +301,8 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
 <img alt="../_images/filter_design-2.png" class="plot-directive" src="../_images/filter_design-2.png" />
 </figure>
 </section>
-<section id="implementation">
-<h2>Implémentation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
+<section id="implementation-c">
+<h2>Implémentation C<a class="headerlink" href="#implementation-c" title="Permalink to this headline">#</a></h2>
 <p>Le code suivant montre comment implémenter le filtre en langage C.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">* Function: iir_filter</span>

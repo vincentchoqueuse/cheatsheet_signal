@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Signaux Analogique &#8212; pydata_theme  documentation</title>
+    <title>Résumé &#8212; pydata_theme  documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -34,7 +34,7 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Signaux Usuels" href="signals.html" />
+    <link rel="next" title="Liste des Transformées de Fourier" href="fourier_list.html" />
     <link rel="prev" title="Analogique" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -148,7 +148,12 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Signaux Analogique
+     Résumé
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fourier_list.html">
+     Liste des Transformées de Fourier
     </a>
    </li>
    <li class="toctree-l2">
@@ -208,48 +213,6 @@
      Propriétés
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exemples">
-     Exemples
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#porte-rectangulaire">
-       Porte rectangulaire
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#porte-triangulaire">
-       Porte triangulaire
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exponentielle-decroissante-unilaterale">
-       Exponentielle Décroissante (unilaterale)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exponentielle-decroissante-bilaterale">
-       Exponentielle Décroissante (bilaterale)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#impulsion-de-dirac">
-       Impulsion de Dirac
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sinusoide-part-1">
-       Sinusoide (part 1)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sinusoide-part-2">
-       Sinusoide (part 2)
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
  </li>
 </ul>
@@ -273,8 +236,8 @@
               
               <div>
                 
-  <section id="signaux-analogique">
-<h1>Signaux Analogique<a class="headerlink" href="#signaux-analogique" title="Permalink to this headline">#</a></h1>
+  <section id="resume">
+<h1>Résumé<a class="headerlink" href="#resume" title="Permalink to this headline">#</a></h1>
 <section id="decomposition-en-series-de-fourier">
 <h2>Décomposition en séries de Fourier<a class="headerlink" href="#decomposition-en-series-de-fourier" title="Permalink to this headline">#</a></h2>
 <p>La décomposition en séries de Fourier d’un signal <span class="math notranslate nohighlight">\(T_0\)</span>-périodique <span class="math notranslate nohighlight">\(x(t)\)</span> est donnée par</p>
@@ -314,119 +277,6 @@
 <div class="math notranslate nohighlight">
 \[(x*y) (t) = \int_{-\infty}^{\infty} x(t-\tau) y(\tau) dt\]</div>
 </section>
-<section id="exemples">
-<h3>Exemples<a class="headerlink" href="#exemples" title="Permalink to this headline">#</a></h3>
-<section id="porte-rectangulaire">
-<h4>Porte rectangulaire<a class="headerlink" href="#porte-rectangulaire" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}x(t)=\Pi(t)=\left\{\begin{array}{cc}
-1,&amp;|t|&lt;\frac{1}{2}\\
-0,&amp;\text{ailleurs}
-\end{array}\right.\end{split}\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\frac{\sin(\pi f)}{\pi f}=\text{sinc}(\pi f)\]</div>
-</section>
-<section id="porte-triangulaire">
-<h4>Porte triangulaire<a class="headerlink" href="#porte-triangulaire" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}x(t)=\Delta(t)=\left\{\begin{array}{cc}
-1-|t|,&amp;|t|\le \frac{1}{2}\\
-0,&amp;\text{ailleurs}
-\end{array}\right.\end{split}\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\text{sinc}^2(\pi f)\]</div>
-</section>
-<section id="exponentielle-decroissante-unilaterale">
-<h4>Exponentielle Décroissante (unilaterale)<a class="headerlink" href="#exponentielle-decroissante-unilaterale" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}x(t)=\left\{\begin{array}{cc}
-0,&amp;t&lt;0\\
-e^{-at},&amp;t\ge 0
-\end{array}\right.\end{split}\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\frac{1}{a+2j\pi f}\]</div>
-</section>
-<section id="exponentielle-decroissante-bilaterale">
-<h4>Exponentielle Décroissante (bilaterale)<a class="headerlink" href="#exponentielle-decroissante-bilaterale" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[x(t)=e^{-a|t|}\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\frac{2a}{a^2+(2\pi f)^2}\]</div>
-</section>
-<section id="impulsion-de-dirac">
-<h4>Impulsion de Dirac<a class="headerlink" href="#impulsion-de-dirac" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}x(t) = \delta(t)=\left\{\begin{array}{cc}
-\infty,&amp;t=0\\
-0,&amp;t\ne 0
-\end{array}\right.~\text{s.t.}\int_{-\infty}^{\infty} \delta(t)dt = 1\end{split}\]</div>
-<ul class="simple">
-<li><p>Propriétés:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}\int_{-\infty}^{\infty} f(t)\delta(t-\tau)dt = f(\tau)\\
-f(t)*\delta(t) = f(t)\\
-f(t)\delta(t) = f(0)\delta(t)\end{split}\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=1\]</div>
-</section>
-<section id="sinusoide-part-1">
-<h4>Sinusoide (part 1)<a class="headerlink" href="#sinusoide-part-1" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[x(t) = \cos(2\pi f_0 t)\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\frac{1}{2}\left(\delta(f-f_0)+\delta(f+f_0)\right)\]</div>
-</section>
-<section id="sinusoide-part-2">
-<h4>Sinusoide (part 2)<a class="headerlink" href="#sinusoide-part-2" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>Définition :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[x(t) = \sin(2\pi f_0 t)\]</div>
-<ul class="simple">
-<li><p>Transformée de Fourier :</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[X(f)=\frac{1}{2j}\left(\delta(f-f_0)-\delta(f+f_0)\right)\]</div>
-</section>
-</section>
 </section>
 </section>
 
@@ -443,10 +293,10 @@ f(t)\delta(t) = f(0)\delta(t)\end{split}\]</div>
             <p class="prev-next-title">Analogique</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="signals.html" title="next page">
+    <a class='right-next' id="next-link" href="fourier_list.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Signaux Usuels</p>
+        <p class="prev-next-title">Liste des Transformées de Fourier</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

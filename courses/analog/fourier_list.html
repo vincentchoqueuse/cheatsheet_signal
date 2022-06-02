@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Analogique &#8212; pydata_theme  documentation</title>
+    <title>Liste des Transformées de Fourier &#8212; pydata_theme  documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -30,11 +30,12 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Résumé" href="summary.html" />
-    <link rel="prev" title="Cours" href="../index.html" />
+    <link rel="next" title="Signaux Usuels" href="signals.html" />
+    <link rel="prev" title="Résumé" href="summary.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -136,7 +137,7 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="index.html">
    Analogique
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -144,14 +145,14 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
      Résumé
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="fourier_list.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Liste des Transformées de Fourier
     </a>
    </li>
@@ -184,9 +185,63 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signaux-a-energie-finie">
+   Signaux à Energie finie
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#porte-rectangulaire">
+     Porte rectangulaire
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#porte-triangulaire">
+     Porte triangulaire
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponentielle-decroissante-unilaterale">
+     Exponentielle Décroissante (unilaterale)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponentielle-decroissante-bilaterale">
+     Exponentielle Décroissante (bilaterale)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#impulsion-de-dirac">
+     Impulsion de Dirac
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signaux-periodiques">
+   Signaux Périodiques
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sinusoide-part-1">
+     Sinusoide (part 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sinusoide-part-2">
+     Sinusoide (part 2)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -206,31 +261,124 @@
               
               <div>
                 
-  <section id="analogique">
-<h1>Analogique<a class="headerlink" href="#analogique" title="Permalink to this headline">#</a></h1>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="summary.html">Résumé</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="summary.html#decomposition-en-series-de-fourier">Décomposition en séries de Fourier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html#transformee-de-fourier">Transformée de Fourier</a></li>
+  <section id="liste-des-transformees-de-fourier">
+<h1>Liste des Transformées de Fourier<a class="headerlink" href="#liste-des-transformees-de-fourier" title="Permalink to this headline">#</a></h1>
+<section id="signaux-a-energie-finie">
+<h2>Signaux à Energie finie<a class="headerlink" href="#signaux-a-energie-finie" title="Permalink to this headline">#</a></h2>
+<section id="porte-rectangulaire">
+<h3>Porte rectangulaire<a class="headerlink" href="#porte-rectangulaire" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="fourier_list.html">Liste des Transformées de Fourier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fourier_list.html#signaux-a-energie-finie">Signaux à Energie finie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fourier_list.html#signaux-periodiques">Signaux Périodiques</a></li>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\Pi(t)=\left\{\begin{array}{cc}
+1,&amp;|t|&lt;\frac{1}{2}\\
+0,&amp;\text{ailleurs}
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="signals.html">Signaux Usuels</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="signals.html#impulsion-de-dirac">Impulsion de Dirac</a></li>
-<li class="toctree-l2"><a class="reference internal" href="signals.html#echelon-unitaire">Echelon unitaire</a></li>
-<li class="toctree-l2"><a class="reference internal" href="signals.html#rampe-unitaire">Rampe unitaire</a></li>
-<li class="toctree-l2"><a class="reference internal" href="signals.html#exponentielle-complexe">Exponentielle Complexe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="signals.html#porte-rectangulaire">Porte rectangulaire</a></li>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{\sin(\pi f)}{\pi f}=\text{sinc}(\pi f)\]</div>
+</section>
+<section id="porte-triangulaire">
+<h3>Porte triangulaire<a class="headerlink" href="#porte-triangulaire" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
 </ul>
-</li>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\Delta(t)=\left\{\begin{array}{cc}
+1-|t|,&amp;|t|\le \frac{1}{2}\\
+0,&amp;\text{ailleurs}
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
 </ul>
-</div>
+<div class="math notranslate nohighlight">
+\[X(f)=\text{sinc}^2(\pi f)\]</div>
+</section>
+<section id="exponentielle-decroissante-unilaterale">
+<h3>Exponentielle Décroissante (unilaterale)<a class="headerlink" href="#exponentielle-decroissante-unilaterale" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\left\{\begin{array}{cc}
+0,&amp;t&lt;0\\
+e^{-at},&amp;t\ge 0
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{a+2j\pi f}\]</div>
+</section>
+<section id="exponentielle-decroissante-bilaterale">
+<h3>Exponentielle Décroissante (bilaterale)<a class="headerlink" href="#exponentielle-decroissante-bilaterale" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t)=e^{-a|t|}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{2a}{a^2+(2\pi f)^2}\]</div>
+</section>
+<section id="impulsion-de-dirac">
+<h3>Impulsion de Dirac<a class="headerlink" href="#impulsion-de-dirac" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t) = \delta(t)=\left\{\begin{array}{cc}
+\infty,&amp;t=0\\
+0,&amp;t\ne 0
+\end{array}\right.~\text{s.t.}\int_{-\infty}^{\infty} \delta(t)dt = 1\end{split}\]</div>
+<ul class="simple">
+<li><p>Propriétés:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\int_{-\infty}^{\infty} f(t)\delta(t-\tau)dt = f(\tau)\\
+f(t)*\delta(t) = f(t)\\
+f(t)\delta(t) = f(0)\delta(t)\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=1\]</div>
+</section>
+</section>
+<section id="signaux-periodiques">
+<h2>Signaux Périodiques<a class="headerlink" href="#signaux-periodiques" title="Permalink to this headline">#</a></h2>
+<section id="sinusoide-part-1">
+<h3>Sinusoide (part 1)<a class="headerlink" href="#sinusoide-part-1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t) = \cos(2\pi f_0 t)\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{2}\left(\delta(f-f_0)+\delta(f+f_0)\right)\]</div>
+</section>
+<section id="sinusoide-part-2">
+<h3>Sinusoide (part 2)<a class="headerlink" href="#sinusoide-part-2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t) = \sin(2\pi f_0 t)\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{2j}\left(\delta(f-f_0)-\delta(f+f_0)\right)\]</div>
+</section>
+</section>
 </section>
 
 
@@ -239,17 +387,17 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="summary.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Cours</p>
+            <p class="prev-next-title">Résumé</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="summary.html" title="next page">
+    <a class='right-next' id="next-link" href="signals.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Résumé</p>
+        <p class="prev-next-title">Signaux Usuels</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

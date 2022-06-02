@@ -1,8 +1,19 @@
 Décomposition d'un signal carré
 ===============================
 
-Dans ce tutorial, nous montrons comment utiliser la décomposition en série de Fourier. Ce tutorial se focalise sur la décomposition 
-d'un signal carré de période :math:`T_0`.
+Dans ce tutorial, nous montrons comment décomposer un signal carré via la décomposition en série de Fourier. 
+
+Modèle de Signal 
+----------------
+
+Sur la période :math:`[-T_0/2, T_0/2]`, un signal carré est défini par 
+
+.. math ::
+
+    x(t) = \left\{\begin{array}{cc}
+        -1 & \text{ si } -\frac{T_0}{2}\le t < 0\\
+        1 & \text{ si } 0 \le t < \frac{T_0}{2}\\
+       \end{array}\right.
 
 .. plot::
     :context: close-figs
@@ -24,10 +35,15 @@ d'un signal carré de période :math:`T_0`.
 Décomposition
 -------------
 
-* Le signal possède une moyenne nulle, donc :math:`c_0=0`.
-* Pour :math:`n\ne 0`, Les coefficients de la décomposition en série de Fourier sont donnés par 
+* Pour :math:`n= 0`, le coefficient est donné par (le signal possède une moyenne nulle):
 
-.. math:: 
+.. math ::
+
+    c_0=0
+
+* Pour :math:`n\ne 0`, les coefficients de la décomposition en série de Fourier sont donnés par 
+
+.. math :: 
 
     c_n &= \frac{1}{T_0}\int_{[T_0]} x(t) e^{-2j\pi \frac{n}{T_0}t}dt\\
         &= \frac{1}{T_0}\left(-\int_{-T_0/2}^0 e^{-2j\pi \frac{n}{T_0}t}dt+\int_0^{T_0/2} e^{-2j\pi \frac{n}{T_0}t}dt\right)\\
@@ -37,7 +53,6 @@ Décomposition
 
 Nous en déduisons que :
 
-
 .. math:: 
 
     c_n = \left\{ \begin{array}{cc}
@@ -45,7 +60,7 @@ Nous en déduisons que :
         0&\text{sinon}\\
      \end{array}\right.
 
-Implémentation
+Reconstruction
 --------------
 
 .. plot::
