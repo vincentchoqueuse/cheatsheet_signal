@@ -1,0 +1,7 @@
+About
+=====
+
+Contributors 
+------------
+
+* V. Choqueuse

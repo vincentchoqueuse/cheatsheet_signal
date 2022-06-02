@@ -28,6 +28,7 @@ author = 'V. Choqueuse'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'matplotlib.sphinxext.plot_directive',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,3 +53,6 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']
 
 html_logo = "_static/logo.png"
+
+plot_html_show_source_link = False
+plot_html_show_formats = False
