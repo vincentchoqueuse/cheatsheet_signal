@@ -1,11 +1,56 @@
 Séries de Fourier 
 =================
 
+Dans ce tutorial, nous montrons comment utiliser la décomposition en série de Fourier. Ce tutorial se focalise sur la décomposition 
+d'un signal carré de période :math:`T_0`.
+
+.. plot::
+    :context: close-figs
+    :include-source:
+
+    import numpy as np
+    from scipy.signal import square
+    import matplotlib.pyplot as plt
+    
+    t = np.arange(-0.5,0.5,0.0001)
+    f0 = 5
+    x = square(2*np.pi*f0*t)
+    plt.plot(t, x)
+    plt.grid()
+    plt.xlabel("t [s]")
+    plt.xlim([-0.5, 0.5])
+
+
+Décomposition
+-------------
+
+* Le signal possède une moyenne nulle, donc :math:`c_0=0`.
+* Pour :math:`n\ne 0`, Les coefficients de la décomposition en série de Fourier sont donnés par 
+
+.. math:: 
+
+    c_n &= \frac{1}{T_0}\int_{[T_0]} x(t) e^{-2j\pi \frac{n}{T_0}t}dt\\
+        &= \frac{1}{T_0}\left(-\int_{-T_0/2}^0 e^{-2j\pi \frac{n}{T_0}t}dt+\int_0^{T_0/2} e^{-2j\pi \frac{n}{T_0}t}dt\right)\\
+        &= -\frac{1}{2j\pi n}\left(- \left[e^{-2j\pi \frac{n}{T_0}t}\right]_{-T_0/2}^0+\left[ e^{-2j\pi \frac{n}{T_0}t} \right]_0^{T_0/2} \right)\\
+        &= -\frac{1}{2j\pi n}\left( e^{j\pi n} + e^{-j\pi n} -2 \right)\\
+        &= \frac{1}{j\pi n}\left(1-\cos(\pi n)\right)
+
+Nous en déduisons que :
+
+
+.. math:: 
+
+    c_n = \left\{ \begin{array}{cc}
+        \frac{2}{j\pi n}&\text{si n est impair}\\
+        0&\text{sinon}\\
+     \end{array}\right.
+
 Implémentation
 --------------
 
 .. plot::
     :context: close-figs
+    :include-source:
 
     class Fourier_Synth():
 
@@ -37,3 +82,4 @@ Implémentation
     plt.plot(t,x)
     plt.grid()
     plt.xlabel("t [s]")
+    plt.xlim([-0.5, 0.5])
