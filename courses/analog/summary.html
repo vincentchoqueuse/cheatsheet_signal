@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Signaux Analogique &#8212; pydata_theme  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Signaux Usuels" href="signals.html" />
+    <link rel="prev" title="Analogique" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Cours
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../links.html">
+  Links
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Analogique
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Signaux Analogique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="signals.html">
+     Signaux Usuels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../discrete/index.html">
+   Numérique
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-en-series-de-fourier">
+   Décomposition en séries de Fourier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proprietes">
+     Propriétés
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformee-de-fourier">
+   Transformée de Fourier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Propriétés
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemples">
+     Exemples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#porte-rectangulaire">
+       Porte rectangulaire
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#porte-triangulaire">
+       Porte triangulaire
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exponentielle-decroissante-unilaterale">
+       Exponentielle Décroissante (unilaterale)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exponentielle-decroissante-bilaterale">
+       Exponentielle Décroissante (bilaterale)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#impulsion-de-dirac">
+       Impulsion de Dirac
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sinusoide-part-1">
+       Sinusoide (part 1)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sinusoide-part-2">
+       Sinusoide (part 2)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="signaux-analogique">
+<h1>Signaux Analogique<a class="headerlink" href="#signaux-analogique" title="Permalink to this headline">#</a></h1>
+<section id="decomposition-en-series-de-fourier">
+<h2>Décomposition en séries de Fourier<a class="headerlink" href="#decomposition-en-series-de-fourier" title="Permalink to this headline">#</a></h2>
+<p>La décomposition en séries de Fourier d’un signal <span class="math notranslate nohighlight">\(T_0\)</span>-périodique <span class="math notranslate nohighlight">\(x(t)\)</span> est donnée par</p>
+<div class="math notranslate nohighlight">
+\[x(t) = \sum_{n=-\infty}^{\infty} c_n e^{2j\pi \frac{n}{T_0}t}\]</div>
+<p>où <span class="math notranslate nohighlight">\(c_n\)</span> désignent les coefficients de la décomposition en série de Fourier et sont donnés par</p>
+<div class="math notranslate nohighlight">
+\[c_n = \frac{1}{T_0}\int_{[T_0]} x(t) e^{-2j\pi \frac{n}{T_0}t}dt\]</div>
+<section id="proprietes">
+<h3>Propriétés<a class="headerlink" href="#proprietes" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Parseval :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{1}{T_0}\int_{[T_0]} |x(t)|^2dt =  \sum_{n=-\infty}^{\infty} |c_n|^2\]</div>
+</section>
+</section>
+<section id="transformee-de-fourier">
+<h2>Transformée de Fourier<a class="headerlink" href="#transformee-de-fourier" title="Permalink to this headline">#</a></h2>
+<p>La transformée de Fourier d’un signal <span class="math notranslate nohighlight">\(x(t)\)</span> est donnée par</p>
+<div class="math notranslate nohighlight">
+\[X(f) = \mathcal{F}\left[x(t)\right]=\int_{-\infty}^{\infty} x(t) e^{-2j\pi ft}dt\]</div>
+<p>La transformée de Fourier Inverse est donnée par</p>
+<div class="math notranslate nohighlight">
+\[x(t) = \mathcal{F}^{-1}\left[X(f)\right]=\int_{-\infty}^{\infty} X(f) e^{2j\pi ft}df\]</div>
+<section id="id1">
+<h3>Propriétés<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Linéarité: <span class="math notranslate nohighlight">\(\mathcal{F}\left[\alpha x_1(t)+\beta x_2(t)\right] = \alpha X_1(f)+\beta X_2(f)\)</span></p></li>
+<li><p>Dilatation / Compression: <span class="math notranslate nohighlight">\(\mathcal{F}\left[x(\alpha t)\right] = \frac{1}{|\alpha|} X\left( \frac{f}{\alpha} \right)\)</span></p></li>
+<li><p>Décalage Temporel: <span class="math notranslate nohighlight">\(\mathcal{F}\left[x(t-\tau)\right] = X(f)e^{-2j\pi f \tau}\)</span></p></li>
+<li><p>Convolution : La transformée de Fourier du produit de convolution est égale au produit des transformées de Fourier, c-à-d</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}\left[(x*y) (t)\right] = X(f)Y(f)\]</div>
+<p>où</p>
+<div class="math notranslate nohighlight">
+\[(x*y) (t) = \int_{-\infty}^{\infty} x(t-\tau) y(\tau) dt\]</div>
+</section>
+<section id="exemples">
+<h3>Exemples<a class="headerlink" href="#exemples" title="Permalink to this headline">#</a></h3>
+<section id="porte-rectangulaire">
+<h4>Porte rectangulaire<a class="headerlink" href="#porte-rectangulaire" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\Pi(t)=\left\{\begin{array}{cc}
+1,&amp;|t|&lt;\frac{1}{2}\\
+0,&amp;\text{ailleurs}
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{\sin(\pi f)}{\pi f}=\text{sinc}(\pi f)\]</div>
+</section>
+<section id="porte-triangulaire">
+<h4>Porte triangulaire<a class="headerlink" href="#porte-triangulaire" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\Delta(t)=\left\{\begin{array}{cc}
+1-|t|,&amp;|t|\le \frac{1}{2}\\
+0,&amp;\text{ailleurs}
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\text{sinc}^2(\pi f)\]</div>
+</section>
+<section id="exponentielle-decroissante-unilaterale">
+<h4>Exponentielle Décroissante (unilaterale)<a class="headerlink" href="#exponentielle-decroissante-unilaterale" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t)=\left\{\begin{array}{cc}
+0,&amp;t&lt;0\\
+e^{-at},&amp;t\ge 0
+\end{array}\right.\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{a+2j\pi f}\]</div>
+</section>
+<section id="exponentielle-decroissante-bilaterale">
+<h4>Exponentielle Décroissante (bilaterale)<a class="headerlink" href="#exponentielle-decroissante-bilaterale" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t)=e^{-a|t|}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{2a}{a^2+(2\pi f)^2}\]</div>
+</section>
+<section id="impulsion-de-dirac">
+<h4>Impulsion de Dirac<a class="headerlink" href="#impulsion-de-dirac" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}x(t) = \delta(t)=\left\{\begin{array}{cc}
+\infty,&amp;t=0\\
+0,&amp;t\ne 0
+\end{array}\right.~\text{s.t.}\int_{-\infty}^{\infty} \delta(t)dt = 1\end{split}\]</div>
+<ul class="simple">
+<li><p>Propriétés:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\int_{-\infty}^{\infty} f(t)\delta(t-\tau)dt = f(\tau)\\
+f(t)*\delta(t) = f(t)\\
+f(t)\delta(t) = f(0)\delta(t)\end{split}\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=1\]</div>
+</section>
+<section id="sinusoide-part-1">
+<h4>Sinusoide (part 1)<a class="headerlink" href="#sinusoide-part-1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t) = \cos(2\pi f_0 t)\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{2}\left(\delta(f-f_0)+\delta(f+f_0)\right)\]</div>
+</section>
+<section id="sinusoide-part-2">
+<h4>Sinusoide (part 2)<a class="headerlink" href="#sinusoide-part-2" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Définition :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t) = \sin(2\pi f_0 t)\]</div>
+<ul class="simple">
+<li><p>Transformée de Fourier :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(f)=\frac{1}{2j}\left(\delta(f-f_0)-\delta(f+f_0)\right)\]</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Analogique</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="signals.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Signaux Usuels</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, V. Choqueuse.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
