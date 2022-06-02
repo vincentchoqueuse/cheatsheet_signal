@@ -1,5 +1,5 @@
-Séries de Fourier 
-=================
+Décomposition d'un signal carré
+===============================
 
 Dans ce tutorial, nous montrons comment utiliser la décomposition en série de Fourier. Ce tutorial se focalise sur la décomposition 
 d'un signal carré de période :math:`T_0`.

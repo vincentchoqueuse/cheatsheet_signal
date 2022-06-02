@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Transformée de Fourier d’une Porte &#8212; pydata_theme  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Links" href="../links.html" />
+    <link rel="prev" title="Synthèse d’un Filtre Numérique" href="filter_design.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../courses/index.html">
+  Cours
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../links.html">
+  Links
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_series.html">
+   Décomposition d’un signal carré
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="filter_design.html">
+   Synthèse d’un Filtre Numérique
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Transformée de Fourier d’une Porte
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modele-de-signal">
+   Modèle de Signal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformee-de-fourier">
+   Transformée de Fourier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proprietes-de-la-tf">
+   Propriétés de la TF
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#valeur-a-l-origine">
+     Valeur à l’origine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#localisation-des-zeros">
+     Localisation des zéros
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="transformee-de-fourier-d-une-porte">
+<h1>Transformée de Fourier d’une Porte<a class="headerlink" href="#transformee-de-fourier-d-une-porte" title="Permalink to this headline">#</a></h1>
+<p>Dans ce tutorial, nous allons calculer puis analyser la transformée d’un signal porte de largeur L.</p>
+<section id="modele-de-signal">
+<h2>Modèle de Signal<a class="headerlink" href="#modele-de-signal" title="Permalink to this headline">#</a></h2>
+<p>Le signal porte est défini par la relation :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Pi_L(t)=\left\{\begin{array}{cc}1 &amp;\text{si }|t| &lt;\frac{L}{2}\\0 &amp;\text{ailleurs}\end{array}\right.\end{split}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&lt;</span> <span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/fourier_transform_rect-1.png" class="plot-directive" src="../_images/fourier_transform_rect-1.png" />
+</figure>
+</section>
+<section id="transformee-de-fourier">
+<h2>Transformée de Fourier<a class="headerlink" href="#transformee-de-fourier" title="Permalink to this headline">#</a></h2>
+<p>La transformée de Fourier du signal porte est égale à :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X(f) &amp;= \mathcal{F}\left[x(t)\right]=\int_{-\infty}^{\infty} x(t) e^{-2j\pi ft}dt\\
+&amp;=\int_{-\frac{L}{2}}^{\frac{L}{2}} e^{-2j\pi ft}dt\\
+&amp;=\frac{1}{-2j\pi f} \left[e^{-2j\pi ft}\right]_{-\frac{L}{2}}^{\frac{L}{2}} \\
+&amp;=\frac{1}{2j\pi f} \left(e^{j\pi fL}-e^{-j\pi fL}\right)\\
+&amp;=\frac{1}{\pi f} \sin(\pi fL)\end{split}\]</div>
+<p>Cette fonction correspond à un sinus cardinal <span class="math notranslate nohighlight">\(sinc(x)=sin(x)/x\)</span> pondéré.</p>
+<div class="math notranslate nohighlight">
+\[X(f) =L \text{sinc}(\pi fL)\]</div>
+</section>
+<section id="proprietes-de-la-tf">
+<h2>Propriétés de la TF<a class="headerlink" href="#proprietes-de-la-tf" title="Permalink to this headline">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">L</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;f [Hz]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/fourier_transform_rect-2.png" class="plot-directive" src="../_images/fourier_transform_rect-2.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La fonction <code class="code docutils literal notranslate"><span class="pre">sinc</span></code> de Scipy est définie par <span class="math notranslate nohighlight">\(sinc(x)=sin(\pi x)/(\pi x)\)</span> (voir <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sinc.html">documentation</a> )</p>
+</div>
+<section id="valeur-a-l-origine">
+<h3>Valeur à l’origine<a class="headerlink" href="#valeur-a-l-origine" title="Permalink to this headline">#</a></h3>
+<p>La valeur à l’origine s’obtient en utilisant le fait que <span class="math notranslate nohighlight">\(sinc(0)=1\)</span>. Nous obtenons alors</p>
+<div class="math notranslate nohighlight">
+\[X(0) = L\]</div>
+</section>
+<section id="localisation-des-zeros">
+<h3>Localisation des zéros<a class="headerlink" href="#localisation-des-zeros" title="Permalink to this headline">#</a></h3>
+<p>La localisation des zéros sont donnés par <span class="math notranslate nohighlight">\(\frac{1}{\pi f} \sin(\pi fL) = 0\)</span>. Il en vient que les fréquences <span class="math notranslate nohighlight">\(f\)</span> sont données
+par les zéros de la fonction (<span class="math notranslate nohighlight">\(f\ne 0\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[\sin(\pi fL) = 0 \Rightarrow \pi fL = k\pi (k\in \mathbb{Z}^+)\]</div>
+<p>Finalement, nous obtenons :</p>
+<div class="math notranslate nohighlight">
+\[f = \frac{k}{L} \text{ pour } k\in \mathbb{Z}^+\]</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="filter_design.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Synthèse d’un Filtre Numérique</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../links.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Links</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, V. Choqueuse.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
