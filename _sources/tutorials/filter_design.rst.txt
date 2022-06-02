@@ -16,11 +16,12 @@ Le cahier des charges du filtre est spécifié ci-dessous :
 Synthèse de filtre
 ------------------
 
-Dans ce tutorial, nous allons utiliser la technique de synthèse de Butterworth.
+Dans ce tutorial, nous allons utiliser la technique de synthèse de Butterworth. Cette technique de synthèse permet d'obtenir une réponse plate 
+dans la bande passante. Notons toutefois que Scipy permet d'implementer facilement d'autres techniques de synthèse de filtres (voir `documentation <https://docs.scipy.org/doc/scipy/reference/signal.html#matlab-style-iir-filter-design>`_ ). 
 
 .. note :: 
 
-    Documentation: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html
+    Fonction :code:`butter` : https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html
 
 
 .. plot::
@@ -115,7 +116,7 @@ Le code suivant montre comment implémenter le filtre en langage C.
 
         for(int n=0; n<N; n++)
         {
-            //compute filer outputs
+            //compute filter output
             output[n] = coef_b[0]*input[n]
                       + coef_b[1]*states[0] 
                       + coef_b[2]*states[1] 
