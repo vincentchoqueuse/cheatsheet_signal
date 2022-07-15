@@ -1,16 +1,14 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Synthèse d’un Filtre Numérique &#8212; pydata_theme  documentation</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,17 +18,23 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -107,8 +111,10 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
         </li>
       </ul>
       </div>
@@ -124,13 +130,12 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p aria-level="2" class="caption" role="heading">
+    <p>
  <span class="caption-text">
   Contents:
  </span>
@@ -160,9 +165,6 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
             </div>
             
           
@@ -173,7 +175,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
+<div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -221,11 +223,11 @@
               <div>
                 
   <section id="synthese-d-un-filtre-numerique">
-<h1>Synthèse d’un Filtre Numérique<a class="headerlink" href="#synthese-d-un-filtre-numerique" title="Permalink to this headline">#</a></h1>
+<h1>Synthèse d’un Filtre Numérique<a class="headerlink" href="#synthese-d-un-filtre-numerique" title="Permalink to this headline">¶</a></h1>
 <p>Ce tutorial montre comment implémenter un filtre numérique en C. Pour obtenir les coefficients du filtre, nous allons utiliser dans un
 premier temps Python et les fonctionnalité de Scipy.</p>
 <section id="cahier-des-charges">
-<h2>Cahier des charges<a class="headerlink" href="#cahier-des-charges" title="Permalink to this headline">#</a></h2>
+<h2>Cahier des charges<a class="headerlink" href="#cahier-des-charges" title="Permalink to this headline">¶</a></h2>
 <p>Le cahier des charges du filtre est spécifié ci-dessous :</p>
 <blockquote>
 <div><ul class="simple">
@@ -237,13 +239,13 @@ premier temps Python et les fonctionnalité de Scipy.</p>
 </div></blockquote>
 </section>
 <section id="synthese-de-filtre">
-<h2>Synthèse de filtre<a class="headerlink" href="#synthese-de-filtre" title="Permalink to this headline">#</a></h2>
+<h2>Synthèse de filtre<a class="headerlink" href="#synthese-de-filtre" title="Permalink to this headline">¶</a></h2>
 <p>Dans ce tutorial, nous allons utiliser la technique de synthèse de Butterworth. Cette technique de synthèse permet d’obtenir une réponse plate
 dans la bande passante. Notons toutefois que Scipy permet d’implementer facilement d’autres techniques de synthèse de filtres (voir <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/signal.html#matlab-style-iir-filter-design">documentation</a> ).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Fonction <code class="code docutils literal notranslate"><span class="pre">butter</span></code> : <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html</a></p>
-</div>
+</aside>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -271,7 +273,7 @@ dans la bande passante. Notons toutefois que Scipy permet d’implementer facile
 </div>
 </section>
 <section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h2>
 <p>Pour vérifier le bon comportement du filtre, le script suivant montre l’allure de la sortie lorsqu’une sinusoïde de 4kHz est envoyé en entrée du filtre.
 Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquence est égale à la fréquence de coupure du filtre.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">lfilter</span>
@@ -303,7 +305,7 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
 </figure>
 </section>
 <section id="implementation-c">
-<h2>Implémentation C<a class="headerlink" href="#implementation-c" title="Permalink to this headline">#</a></h2>
+<h2>Implémentation C<a class="headerlink" href="#implementation-c" title="Permalink to this headline">¶</a></h2>
 <p>Le code suivant montre comment implémenter le filtre en langage C.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">* Function: iir_filter</span>
@@ -356,7 +358,7 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="fourier_series.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -379,8 +381,7 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
@@ -392,7 +393,7 @@ Nous observons bien une réduction de l’amplitude de -3dB lorsque la fréquenc
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br>
 </p>
     </div>
     

@@ -1,16 +1,14 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Transformée de Fourier d’une Porte &#8212; pydata_theme  documentation</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,18 +18,23 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -108,8 +111,10 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
         </li>
       </ul>
       </div>
@@ -125,13 +130,12 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p aria-level="2" class="caption" role="heading">
+    <p>
  <span class="caption-text">
   Contents:
  </span>
@@ -161,9 +165,6 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
             </div>
             
           
@@ -174,7 +175,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
+<div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -229,10 +230,10 @@
               <div>
                 
   <section id="transformee-de-fourier-d-une-porte">
-<h1>Transformée de Fourier d’une Porte<a class="headerlink" href="#transformee-de-fourier-d-une-porte" title="Permalink to this headline">#</a></h1>
+<h1>Transformée de Fourier d’une Porte<a class="headerlink" href="#transformee-de-fourier-d-une-porte" title="Permalink to this headline">¶</a></h1>
 <p>Dans ce tutorial, nous allons calculer puis analyser la transformée d’un signal porte de largeur L.</p>
 <section id="modele-de-signal">
-<h2>Modèle de Signal<a class="headerlink" href="#modele-de-signal" title="Permalink to this headline">#</a></h2>
+<h2>Modèle de Signal<a class="headerlink" href="#modele-de-signal" title="Permalink to this headline">¶</a></h2>
 <p>Le signal porte est défini par la relation :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Pi_L(t)=\left\{\begin{array}{cc}1 &amp;\text{si }|t| &lt;\frac{L}{2}\\0 &amp;\text{ailleurs}\end{array}\right.\end{split}\]</div>
@@ -254,7 +255,7 @@
 </figure>
 </section>
 <section id="transformee-de-fourier">
-<h2>Transformée de Fourier<a class="headerlink" href="#transformee-de-fourier" title="Permalink to this headline">#</a></h2>
+<h2>Transformée de Fourier<a class="headerlink" href="#transformee-de-fourier" title="Permalink to this headline">¶</a></h2>
 <p>La transformée de Fourier du signal porte est égale à :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}X(f) &amp;= \mathcal{F}\left[x(t)\right]=\int_{-\infty}^{\infty} x(t) e^{-2j\pi ft}dt\\
@@ -267,7 +268,7 @@
 \[X(f) =L \text{sinc}(\pi fL)\]</div>
 </section>
 <section id="proprietes-de-la-tf">
-<h2>Propriétés de la TF<a class="headerlink" href="#proprietes-de-la-tf" title="Permalink to this headline">#</a></h2>
+<h2>Propriétés de la TF<a class="headerlink" href="#proprietes-de-la-tf" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -287,15 +288,15 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>La fonction <code class="code docutils literal notranslate"><span class="pre">sinc</span></code> de Scipy est définie par <span class="math notranslate nohighlight">\(sinc(x)=sin(\pi x)/(\pi x)\)</span> (voir <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sinc.html">documentation</a> )</p>
-</div>
+</aside>
 <section id="valeur-a-l-origine">
-<h3>Valeur à l’origine<a class="headerlink" href="#valeur-a-l-origine" title="Permalink to this headline">#</a></h3>
+<h3>Valeur à l’origine<a class="headerlink" href="#valeur-a-l-origine" title="Permalink to this headline">¶</a></h3>
 <p>La valeur à l’origine s’obtient en utilisant le fait que <span class="math notranslate nohighlight">\(sinc(0)=1\)</span>. Nous obtenons alors</p>
 <div class="math notranslate nohighlight">
 \[X(0) = L\]</div>
 </section>
 <section id="localisation-des-zeros">
-<h3>Localisation des zéros<a class="headerlink" href="#localisation-des-zeros" title="Permalink to this headline">#</a></h3>
+<h3>Localisation des zéros<a class="headerlink" href="#localisation-des-zeros" title="Permalink to this headline">¶</a></h3>
 <p>La localisation des zéros sont donnés par <span class="math notranslate nohighlight">\(\frac{1}{\pi f} \sin(\pi fL) = 0\)</span>. Il en vient que les fréquences <span class="math notranslate nohighlight">\(f\)</span> sont données
 par les zéros de la fonction (<span class="math notranslate nohighlight">\(f\ne 0\)</span>)</p>
 <div class="math notranslate nohighlight">
@@ -312,7 +313,7 @@ par les zéros de la fonction (<span class="math notranslate nohighlight">\(f\ne
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="filter_design.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -335,8 +336,7 @@ par les zéros de la fonction (<span class="math notranslate nohighlight">\(f\ne
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
@@ -348,7 +348,7 @@ par les zéros de la fonction (<span class="math notranslate nohighlight">\(f\ne
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br>
 </p>
     </div>
     

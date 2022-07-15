@@ -1,16 +1,14 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Analyse Spectrale &#8212; pydata_theme  documentation</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,18 +18,23 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -108,8 +111,10 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
         </li>
       </ul>
       </div>
@@ -125,13 +130,12 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p aria-level="2" class="caption" role="heading">
+    <p>
  <span class="caption-text">
   Contents:
  </span>
@@ -161,9 +165,6 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
             </div>
             
           
@@ -174,7 +175,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
+<div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -243,10 +244,10 @@
               <div>
                 
   <section id="analyse-spectrale">
-<h1>Analyse Spectrale<a class="headerlink" href="#analyse-spectrale" title="Permalink to this headline">#</a></h1>
+<h1>Analyse Spectrale<a class="headerlink" href="#analyse-spectrale" title="Permalink to this headline">¶</a></h1>
 <p>Ce tutorial montre comment effectué une analyse spectrale d’un signal.</p>
 <section id="modele-de-signal">
-<h2>Modèle de Signal<a class="headerlink" href="#modele-de-signal" title="Permalink to this headline">#</a></h2>
+<h2>Modèle de Signal<a class="headerlink" href="#modele-de-signal" title="Permalink to this headline">¶</a></h2>
 <p>Afin d’illustrer ce tutorial, nous allons utiliser le signal suivant</p>
 <div class="math notranslate nohighlight">
 \[x(t) = a_1 \cos(2\pi f_1 t) + a_2 \cos(2\pi f_2 t) + b(t)\]</div>
@@ -281,7 +282,7 @@
 </figure>
 </section>
 <section id="fft">
-<h2>FFT<a class="headerlink" href="#fft" title="Permalink to this headline">#</a></h2>
+<h2>FFT<a class="headerlink" href="#fft" title="Permalink to this headline">¶</a></h2>
 <p>Numpy intègre des fonctionnalités pour l’évaluation rapide de la DFT.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -290,7 +291,7 @@
 <li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.fft.fftfreq.html">https://numpy.org/doc/stable/reference/generated/numpy.fft.fftfreq.html</a></p></li>
 <li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.fft.fftshift.html">https://numpy.org/doc/stable/reference/generated/numpy.fft.fftshift.html</a></p></li>
 </ul>
-</div>
+</aside>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameter</span>
 <span class="n">NFFT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">13</span>
 
@@ -302,7 +303,7 @@
 </pre></div>
 </div>
 <section id="echelle-lineaire">
-<h3>Echelle Linéaire<a class="headerlink" href="#echelle-lineaire" title="Permalink to this headline">#</a></h3>
+<h3>Echelle Linéaire<a class="headerlink" href="#echelle-lineaire" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Fréquence [Hz]&quot;</span><span class="p">)</span>
@@ -314,7 +315,7 @@
 </figure>
 </section>
 <section id="echelle-semi-log">
-<h3>Echelle Semi-Log<a class="headerlink" href="#echelle-semi-log" title="Permalink to this headline">#</a></h3>
+<h3>Echelle Semi-Log<a class="headerlink" href="#echelle-semi-log" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">10</span><span class="o">**-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -328,7 +329,7 @@
 </section>
 </section>
 <section id="periodogramme">
-<h2>Périodogramme<a class="headerlink" href="#periodogramme" title="Permalink to this headline">#</a></h2>
+<h2>Périodogramme<a class="headerlink" href="#periodogramme" title="Permalink to this headline">¶</a></h2>
 <p>La fonction <code class="code docutils literal notranslate"><span class="pre">periodogram</span></code> de scipy permet d’obtenir rapidement le periodogramme d’un signal.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">periodogram</span><span class="p">,</span> <span class="n">get_window</span>
 
@@ -345,9 +346,9 @@
 <img alt="../_images/non_parametric_spectral_analysis-5.png" class="plot-directive" src="../_images/non_parametric_spectral_analysis-5.png" />
 </figure>
 <section id="liste-des-fenetres">
-<h3>Liste des fenêtres<a class="headerlink" href="#liste-des-fenetres" title="Permalink to this headline">#</a></h3>
+<h3>Liste des fenêtres<a class="headerlink" href="#liste-des-fenetres" title="Permalink to this headline">¶</a></h3>
 <section id="representation-temporelle">
-<h4>Representation Temporelle<a class="headerlink" href="#representation-temporelle" title="Permalink to this headline">#</a></h4>
+<h4>Representation Temporelle<a class="headerlink" href="#representation-temporelle" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="n">window_name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;boxcar&quot;</span><span class="p">,</span> <span class="s2">&quot;blackman&quot;</span><span class="p">,</span> <span class="s2">&quot;hamming&quot;</span><span class="p">,</span> <span class="s2">&quot;bartlett&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">window_name</span> <span class="ow">in</span> <span class="n">window_name_list</span><span class="p">:</span>
@@ -371,7 +372,7 @@
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="fourier_transform_rect.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -394,8 +395,7 @@
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
@@ -407,7 +407,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br>
 </p>
     </div>
     

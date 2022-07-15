@@ -1,16 +1,14 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Signaux Usuels &#8212; pydata_theme  documentation</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,18 +18,23 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -44,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -108,8 +111,10 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
         </li>
       </ul>
       </div>
@@ -125,13 +130,12 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p aria-level="2" class="caption" role="heading">
+    <p>
  <span class="caption-text">
   Contents:
  </span>
@@ -173,9 +177,6 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
             </div>
             
           
@@ -186,7 +187,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
+<div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -246,7 +247,7 @@
               <div>
                 
   <section id="signaux-usuels">
-<h1>Signaux Usuels<a class="headerlink" href="#signaux-usuels" title="Permalink to this headline">#</a></h1>
+<h1>Signaux Usuels<a class="headerlink" href="#signaux-usuels" title="Permalink to this headline">¶</a></h1>
 <p>Cette page donne l’expression des signaux usuels et montre comment les implémenter en Python.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -255,7 +256,7 @@
 </pre></div>
 </div>
 <section id="impulsion-de-dirac">
-<h2>Impulsion de Dirac<a class="headerlink" href="#impulsion-de-dirac" title="Permalink to this headline">#</a></h2>
+<h2>Impulsion de Dirac<a class="headerlink" href="#impulsion-de-dirac" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\delta(t)=\left\{\begin{array}{cc}\infty &amp;\text{si }t= 0\\0 &amp;\text{ailleurs}\end{array}\right.\end{split}\]</div>
 <p>sous la contrainte</p>
@@ -263,7 +264,7 @@
 \[\int_{-\infty}^{\infty}\delta(t)dt = 1\]</div>
 </section>
 <section id="echelon-unitaire">
-<h2>Echelon unitaire<a class="headerlink" href="#echelon-unitaire" title="Permalink to this headline">#</a></h2>
+<h2>Echelon unitaire<a class="headerlink" href="#echelon-unitaire" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}u(t)=\left\{\begin{array}{cc}1 &amp;\text{si }t\ge 0\\0 &amp;\text{ailleurs}\end{array}\right.\end{split}\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
@@ -279,7 +280,7 @@
 </figure>
 </section>
 <section id="rampe-unitaire">
-<h2>Rampe unitaire<a class="headerlink" href="#rampe-unitaire" title="Permalink to this headline">#</a></h2>
+<h2>Rampe unitaire<a class="headerlink" href="#rampe-unitaire" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[r(t)=t u(t)\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
@@ -294,7 +295,7 @@
 <img alt="../../_images/signals-3.png" class="plot-directive" src="../../_images/signals-3.png" />
 </figure>
 <section id="sinsusoide">
-<h3>Sinsusoide<a class="headerlink" href="#sinsusoide" title="Permalink to this headline">#</a></h3>
+<h3>Sinsusoide<a class="headerlink" href="#sinsusoide" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[x(t)=a \sin(\omega_0 t+\varphi)\]</div>
 <ul class="simple">
@@ -317,7 +318,7 @@
 </section>
 </section>
 <section id="exponentielle-complexe">
-<h2>Exponentielle Complexe<a class="headerlink" href="#exponentielle-complexe" title="Permalink to this headline">#</a></h2>
+<h2>Exponentielle Complexe<a class="headerlink" href="#exponentielle-complexe" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[z(t)=a e^{j\omega t+\varphi}\]</div>
 <ul class="simple">
@@ -341,7 +342,7 @@
 </figure>
 </section>
 <section id="porte-rectangulaire">
-<h2>Porte rectangulaire<a class="headerlink" href="#porte-rectangulaire" title="Permalink to this headline">#</a></h2>
+<h2>Porte rectangulaire<a class="headerlink" href="#porte-rectangulaire" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Pi_L(t)=\left\{\begin{array}{cc}1 &amp;\text{si }|t| &lt;\frac{L}{2}\\0 &amp;\text{ailleurs}\end{array}\right.\end{split}\]</div>
 <ul class="simple">
@@ -367,7 +368,7 @@
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="fourier_list.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -390,8 +391,7 @@
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
@@ -403,7 +403,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br>
 </p>
     </div>
     
