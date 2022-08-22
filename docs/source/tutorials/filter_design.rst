@@ -20,9 +20,7 @@ Synthèse de filtre
 Dans ce tutorial, nous allons utiliser la technique de synthèse de Butterworth. Cette technique de synthèse permet d'obtenir une réponse plate 
 dans la bande passante. Notons toutefois que Scipy permet d'implementer facilement d'autres techniques de synthèse de filtres (voir `documentation <https://docs.scipy.org/doc/scipy/reference/signal.html#matlab-style-iir-filter-design>`_ ). 
 
-.. note :: 
-
-    Fonction :code:`butter` : https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html
+* Fonction :code:`butter` : https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html
 
 
 .. plot::

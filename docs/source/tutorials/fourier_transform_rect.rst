@@ -72,9 +72,7 @@ Propriétés de la TF
     plt.xlabel("f [Hz]")
     plt.xlim([-4, 4])
 
-.. note ::
-
-    La fonction :code:`sinc` de Scipy est définie par :math:`sinc(x)=sin(\pi x)/(\pi x)` (voir `documentation <https://numpy.org/doc/stable/reference/generated/numpy.sinc.html>`_ )
+* La fonction :code:`sinc` de Scipy est définie par :math:`sinc(x)=sin(\pi x)/(\pi x)` (voir `documentation <https://numpy.org/doc/stable/reference/generated/numpy.sinc.html>`_ )
 
 Valeur à l'origine 
 ++++++++++++++++++
