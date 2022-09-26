@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Analyse de filtres &#8212; pydata_theme  documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Filtres FIR et IIR" href="FIR_IIR.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Cours
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../links.html">
+  Links
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../analog/index.html">
+   Analogique
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/summary.html">
+     Résumé
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/fourier_list.html">
+     Liste des Transformées de Fourier
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/signals.html">
+     Signaux Usuels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Numérique
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Analyse de filtres
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="FIR_IIR.html">
+     Filtres FIR et IIR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design.html">
+     Synthèse de Filtres
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformee-en-z">
+   Transformée en Z
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition">
+     Définition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tables-des-transformees">
+     Tables des transformées
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proprietes">
+     Propriétés
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fonction-de-transfert">
+   Fonction de transfert
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forme-polynomiale">
+     Forme polynomiale
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemple">
+     Exemple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forme-factorisee">
+     Forme factorisée
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stabilite">
+   Stabilité
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propriete">
+     Propriété
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exemple
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyse-frequentielle">
+   Analyse Fréquentielle
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Définition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Propriétés
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reponse-frequentielle">
+       Réponse Fréquentielle
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Définition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representation">
+     Représentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lien-avec-l-equation-aux-differences">
+     Lien avec l’équation aux différences
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="analyse-de-filtres">
+<h1>Analyse de filtres<a class="headerlink" href="#analyse-de-filtres" title="Permalink to this heading">#</a></h1>
+<p>Une grande partie des filtres LTI peut s’exprimer à partir d’une équation aux différences</p>
+<div class="math notranslate nohighlight">
+\[y[n]=\sum_{m=0}^{M}b_m x[n-m]-\sum_{l=1}^{L}a_l y[n-l]\]</div>
+<p>Dans cette section, nous allons introduire les outils nécessaires pour analyser ce type de filtre.</p>
+<section id="transformee-en-z">
+<h2>Transformée en Z<a class="headerlink" href="#transformee-en-z" title="Permalink to this heading">#</a></h2>
+<section id="definition">
+<h3>Définition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h3>
+<p>La transformée en <span class="math notranslate nohighlight">\(\mathcal{Z}\)</span> d’une suite numérique <span class="math notranslate nohighlight">\(x[n]`\)</span> est définie par l’équation</p>
+<div class="math notranslate nohighlight">
+\[X(z) \triangleq \sum_{n=-\infty}^{\infty}x[n]z^{-n}\]</div>
+<p>où <span class="math notranslate nohighlight">\(z\)</span> est une variable complexe.</p>
+<p>Il est important de noter que la transformée de 2d’un signal ne converge pas nécessairement pour toutes les valeurs <span class="math notranslate nohighlight">\(z \in \mathbb{Z}\)</span>.
+Il est alors nécessaire de préciser la région de convergence (ROC) pour laquelle la série converge c-à-d les valeurs de <span class="math notranslate nohighlight">\(z`\)</span> telles que <span class="math notranslate nohighlight">\(|X(z)|&lt;\infty\)</span>.</p>
+</section>
+<section id="tables-des-transformees">
+<h3>Tables des transformées<a class="headerlink" href="#tables-des-transformees" title="Permalink to this heading">#</a></h3>
+<p>A titre d’illustration, le tableau suivant présente les transformées en Z de plusieurs signaux et leurs regions de convergence associées.</p>
+<table class="table" id="id5">
+<caption><span class="caption-text">Quelques transformées en Z</span><a class="headerlink" href="#id5" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Transformée en Z</p></th>
+<th class="head"><p>ROC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\delta[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z \in \mathbb{Z}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{1-z^{-1}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; 1\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\delta[n-m]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z^{-m}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z \ne 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(à^n u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{1-az^{-1}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; |à|\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(na^n u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{az^{-1}}{(1-az^{-1})^2}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; |à|\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\cos (\omega_0 n)u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1-\cos(\omega_0)z^{-1}}{1-2\cos(\omega_0)z^{-1}+z^{-2}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; 1\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sin (\omega_0 n)u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\sin(\omega_0)z^{-1}}{1-2\cos(\omega_0)z^{-1}+z^{-2}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; 1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r^n\cos (\omega_0 n)u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1-r\cos(\omega_0)z^{-1}}{1-2r\cos(\omega_0)z^{-1}+r^2z^{-2}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; r\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(r^n\sin (\omega_0 n)u[n]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{r\sin(\omega_0)z^{-1}}{1-2r\cos(\omega_0)z^{-1}+r^2z^{-2}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|z| &gt; r\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="proprietes">
+<h3>Propriétés<a class="headerlink" href="#proprietes" title="Permalink to this heading">#</a></h3>
+<p>La transformée en 2 possède les propriétés suivantes (les réciproques étant également vraies):</p>
+<ul class="simple">
+<li><p>Linéarité: Si <span class="math notranslate nohighlight">\(y[n]=\alpha x_1[n]+\beta x_2[n]\)</span>, alors <span class="math notranslate nohighlight">\(Y(z)=\alpha X_1(z)+\beta X_2(z)\)</span>.</p></li>
+<li><p>Décalage temporel: Si <span class="math notranslate nohighlight">\(y[n]=x[n-m]\)</span> (<span class="math notranslate nohighlight">\(m \in \mathbb{Z}\)</span>), alors <span class="math notranslate nohighlight">\(Y(z)=X(z)z^{-m}\)</span>.</p></li>
+<li><p>Multiplication par une fonction exponentielle: Si <span class="math notranslate nohighlight">\(y[n]= à^n x[n]\)</span>, alors <span class="math notranslate nohighlight">\(Y(z)=X(z/à)\)</span>.</p></li>
+<li><p>Convolution: Si <span class="math notranslate nohighlight">\(y[n]= h[n]*x[n]\)</span>, alors <span class="math notranslate nohighlight">\(Y(z)=H(z)X(z)\)</span>.</p></li>
+<li><p>Théorème de la valeur finale: <span class="math notranslate nohighlight">\(\lim_{n\to \infty} x[n]=\lim_{z\to 1}(z-1)X(z)\)</span>.</p></li>
+</ul>
+<p>La propriété liée au décalage temporel indique qu’un retard d’un échantillon dans le domaine temporel revient à multiplier la transformée en Z par <span class="math notranslate nohighlight">\(z^{-1}\)</span>.
+En utilisant cette propriété, l’équation aux différences peut être représentée graphiquement par un schéma bloc où les blocs de fonction de transfert <span class="math notranslate nohighlight">\(z^{-1}\)</span> introduisent un retard d’un échantillon.
+A titre d’exemple, la figure suivante présente le schéma bloc du filtre 1.</p>
+<p>La propriété liée à la convolution montre l’importance de la transformée en Z de la réponse impulsionnelle, <span class="math notranslate nohighlight">\(H(z)\)</span>.
+Cette transformée en Z est appelée fonction de transfert du filtre.</p>
+</section>
+</section>
+<section id="fonction-de-transfert">
+<h2>Fonction de transfert<a class="headerlink" href="#fonction-de-transfert" title="Permalink to this heading">#</a></h2>
+<p>La fonction de transfert d’un filtre correspond à la transformée en Z de sa réponse impulsionnelle c-à-d</p>
+<div class="math notranslate nohighlight">
+\[H(z) =\sum_{n=-\infty}^{\infty}h[n]z^{-n}\]</div>
+<p>La propriété liée à la convolution montre que la fonction de transfert d’un filtre s’exprime également sous la forme <span class="math notranslate nohighlight">\(H(z)=Y(z)/X(z)\)</span>.
+Pour un filtre décrit par une équation aux différences, cette propriété permet d’exprimer la fonction de transfert du filtre en fonction des coefficients des parties récursive <span class="math notranslate nohighlight">\(a_l\)</span> et non-recursive <span class="math notranslate nohighlight">\(b_m`\)</span> du filtre.</p>
+<section id="forme-polynomiale">
+<h3>Forme polynomiale<a class="headerlink" href="#forme-polynomiale" title="Permalink to this heading">#</a></h3>
+<p>La fonction de transfert d’un filtre numérique décrit par une équation aux différences s’exprime sous la forme:</p>
+<div class="math notranslate nohighlight">
+\[H(z)=\frac{B(z)}{A(z)}=\frac{\sum_{m=0}^{M}b_m z^{-m}}{\sum_{l=0}^{L}a_l z^{-l}}\]</div>
+</section>
+<section id="exemple">
+<h3>Exemple<a class="headerlink" href="#exemple" title="Permalink to this heading">#</a></h3>
+<p>Considérons le filtre décrit par l’équation de récurrence suivante :</p>
+<div class="math notranslate nohighlight">
+\[y[n]=0.065x[n]+0.13 x[n-1]+0.065x[n-2])+1.143y[n-1]-0.413y[n-2]\]</div>
+<p>Il est possible de montrer que la fonction de transfert de ce filtre est donnée par</p>
+<div class="math notranslate nohighlight">
+\[H(z)=\frac{0.065+0.13 z^{-1}+0.065z^{-2}}{1-1.143z^{-1}+0.413z^{-2}}.\]</div>
+<p>Par exemple, si l’entrée du filtre est un échelon unitaire, la transformée en Z de la sortie sera égale à
+<span class="math notranslate nohighlight">\(Y(z)=H(z)/(1-z^{-1})\)</span>. En utilisant le théorème de la valeur finale, nous pouvons alors anticiper qu’en temporel
+la valeur finale sera égale à <span class="math notranslate nohighlight">\(\lim_{n\to\infty}y[n]=H(1)=0.962\)</span>. La figure suivante présente la réponse du filtre 1
+lorsqu’un échelon unitaire est envoyé en entrée. Nous pouvons constater qu’effectivement la valeur finale est bien égale à <span class="math notranslate nohighlight">\(0.962\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">dlti</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.065</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.065</span><span class="p">]</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.143</span><span class="p">,</span> <span class="mf">0.413</span><span class="p">]</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">dlti</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+<span class="c1"># affichage de la reponse indicielle</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.962</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Réponse Indicielle&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/analyse-1.png" class="plot-directive" src="../../_images/analyse-1.png" />
+</figure>
+</section>
+<section id="forme-factorisee">
+<h3>Forme factorisée<a class="headerlink" href="#forme-factorisee" title="Permalink to this heading">#</a></h3>
+<p>La fonction de transfert <span class="math notranslate nohighlight">\(H(z)\)</span> peut présenter des “pics” et des “vallées” pour certaines valeurs de <span class="math notranslate nohighlight">\(z\)</span>.
+Pour mettre en évidence ces comportements singuliers, il est possible de réexprimer la fonction de transfert sous une forme factorisée.</p>
+<p>La forme factorisée donne explicitement les valeurs de <span class="math notranslate nohighlight">\(z`\)</span> pour lesquelles <span class="math notranslate nohighlight">\(H(z)\)</span> tend vers 0 (zéros)
+et les valeurs de <span class="math notranslate nohighlight">\(z\)</span> pour lesquelles <span class="math notranslate nohighlight">\(H(z)`\)</span> tend vers l’infini (pôles).</p>
+<div class="math notranslate nohighlight">
+\[H(z)=\left(\frac{b_0}{a_0}\right)\frac{\prod_{m=1}^{M}(1-z_m z^{-1})}{\prod_{l=1}^{L}(1-p_l z^{-1})}\]</div>
+<ul class="simple">
+<li><p>les valeurs <span class="math notranslate nohighlight">\(z_m\)</span> correspondent respectivement aux zéros de la fonction de transfert,</p></li>
+<li><p>les valeurs <span class="math notranslate nohighlight">\(p_l\)</span> correspondent respectivement aux pôles de la fonction de transfert.</p></li>
+</ul>
+<p>En pratique, les valeurs des pôles et des zéros s’obtiennent le plus souvent en utilisant des algorithmes numériques.
+A titre d’illustration, la fonction Python <code class="code docutils literal notranslate"><span class="pre">root</span></code> permet d’établir que le filtre 1 possède un zéro double en <span class="math notranslate nohighlight">\(z=-1\)</span> et deux pôles complexes conjugués en <span class="math notranslate nohighlight">\(z=0.57\pm 0.29j\)</span>.
+Notons que comme les coefficients <span class="math notranslate nohighlight">\(a_l\)</span> et <span class="math notranslate nohighlight">\(b_m\)</span> sont réels, les pôles et zéros complexes sont nécessairement réels ou complexe-conjugués.</p>
+<p>Il est courant de représenter la localisation des pôles et des zéros dans le plan complexe. Par convention, les pôles sont indiqués avec un <span class="math notranslate nohighlight">\(\times\)</span> et les zéros avec un <span class="math notranslate nohighlight">\(\circ\)</span>.
+La figure suivante présente la localisation des pôles et des zéros pour le filtre 1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">dlti</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.065</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.065</span><span class="p">]</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.143</span><span class="p">,</span> <span class="mf">0.413</span><span class="p">]</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">dlti</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+<span class="n">poles</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">poles</span>
+<span class="n">zeros</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">zeros</span>
+
+<span class="c1"># affichage des poles et zeros</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">zeros</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">zeros</span><span class="p">),</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;zeros&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">poles</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">poles</span><span class="p">),</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;poles&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real Part&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imag part&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/analyse-2.png" class="plot-directive" src="../../_images/analyse-2.png" />
+</figure>
+</section>
+</section>
+<section id="stabilite">
+<h2>Stabilité<a class="headerlink" href="#stabilite" title="Permalink to this heading">#</a></h2>
+<p>La localisation des pôles joue un rôle de premier plan sur la propriété de stabilité du filtre. De manière formelle, un filtre est dit stable si sa réponse impulsionnelle est absolument sommable c-à-d</p>
+<div class="math notranslate nohighlight">
+\[\sum_{n=-\infty}^{\infty}|h[n]|&lt;\infty\]</div>
+<section id="propriete">
+<h3>Propriété<a class="headerlink" href="#propriete" title="Permalink to this heading">#</a></h3>
+<p>Un filtre est stable si tous les pôles de sa fonction de transfert sont inclus dans le cercle de rayon unité c-à-d si pour tout <span class="math notranslate nohighlight">\(l`\)</span></p>
+<div class="math notranslate nohighlight">
+\[|p_l|\le 1\]</div>
+</section>
+<section id="id1">
+<h3>Exemple<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>La figure suivtante présente la localisation des pôles et des zéros ainsi que la réponse impulsionnelle de deux filtres IIR.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">dlti</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># enter zero pole gain transfert function</span>
+<span class="n">H1</span> <span class="o">=</span> <span class="n">dlti</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="o">+</span><span class="mf">0.3</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.2</span><span class="o">-</span><span class="mf">0.3</span><span class="n">j</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">H2</span> <span class="o">=</span> <span class="n">dlti</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="o">+</span><span class="mf">0.3</span><span class="n">j</span><span class="p">,</span> <span class="mf">1.2</span><span class="o">-</span><span class="mf">0.3</span><span class="n">j</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">H_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">H1</span><span class="p">,</span> <span class="n">H2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">H</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">H_list</span><span class="p">):</span>
+
+    <span class="c1"># affichage des poles et zeros</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">zeros</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">zeros</span><span class="p">),</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">poles</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">poles</span><span class="p">),</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real Part&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imag part&quot;</span><span class="p">)</span>
+
+    <span class="c1"># affichage de la reponse impulsionnelle</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">impulse</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Réponse Indicielle&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/analyse-3.png" class="plot-directive" src="../../_images/analyse-3.png" />
+</figure>
+<ul class="simple">
+<li><p>Le premier filtre est stable car tous ses pôles sont inclus dans le cercle de rayon unité.</p></li>
+<li><p>Le second filtre est instable car il possède deux pôles pour lesquels le module est supérieur à 1. Pour ce second filtre, nous constatons que la réponse impulsionnelle semble tendre vers des valeurs infinies ( <span class="math notranslate nohighlight">\(10^8\)</span> !)</p></li>
+</ul>
+</section>
+</section>
+<section id="analyse-frequentielle">
+<h2>Analyse Fréquentielle<a class="headerlink" href="#analyse-frequentielle" title="Permalink to this heading">#</a></h2>
+<p>Le domaine fréquentielle est très utilisé pour analyser le comportement des filtres LTI.
+Le succès de ce domaine d’analyse est principalement lié au fait que la réponse d’un filtre à une exponentielle complexe de pulsation <span class="math notranslate nohighlight">\(\omega\)</span>
+est une exponentielle complexe de même pulsation mais multipliée par un coefficient complexe.
+Ce coefficient multiplicateur s’obtient à partir de la transformée de Fourier de la réponse impulsionnelle.</p>
+<section id="id2">
+<h3>Définition<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Une suite numérique <span class="math notranslate nohighlight">\(x[n]\)</span> peut se décomposer sous la forme</p>
+<div class="math notranslate nohighlight">
+\[x[n]= \frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})e^{j\omega n}d\omega\]</div>
+<ul class="simple">
+<li><p>la quantité <span class="math notranslate nohighlight">\(X(e^{j\omega})\)</span> correspond à la transformée de Fourier (à temps discret) de <span class="math notranslate nohighlight">\(x[n]\)</span>. La transformée de Fourier est définie par</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X(e^{j\omega})\triangleq \sum_{n=-\infty}^{\infty}x[n]e^{-j\omega n}.\]</div>
+</section>
+<section id="id3">
+<h3>Propriétés<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>La transformée de Fourier d’un signal s’obtient en évaluant sa transformée en Z sur le cercle de rayon unité c-à-d <span class="math notranslate nohighlight">\(z=e^{j\omega}\)</span>.</p></li>
+<li><p>Comme <span class="math notranslate nohighlight">\(X(e^{j\omega})=X(e^{j(\omega+2k\pi)})\)</span> (<span class="math notranslate nohighlight">\(k \in \mathbb{Z}\)</span>), la transformée de Fourier à temps discret est <span class="math notranslate nohighlight">\(2\pi\)</span>-périodique. De plus lorsque <span class="math notranslate nohighlight">\(x[n]\in \mathbb{R}\)</span>, il est possible de démontrer que <span class="math notranslate nohighlight">\(X(e^{j\omega})=X^{*}(e^{-j\omega})`\)</span> (symétrie hermitienne). Pour ces deux raisons, la transformée de Fourier est couramment représentée dans l’intervalle <span class="math notranslate nohighlight">\([0,\pi]\)</span>.</p></li>
+<li><p>La transformée de Fourier du signal de sortie d’un filtre LTI s’obtient en multipliant la transformée de Fourier de la réponse impulsionnelle du filtre par la transformée de Fourier de l’entrée c-à-d <span class="math notranslate nohighlight">\(Y(e^{j\omega})=H(e^{j\omega})X(e^{j\omega})\)</span>. La transformée de Fourier de la réponse impulsionnelle est appelée réponse fréquentielle du filtre.</p></li>
+</ul>
+<section id="reponse-frequentielle">
+<h4>Réponse Fréquentielle<a class="headerlink" href="#reponse-frequentielle" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="id4">
+<h3>Définition<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>La réponse fréquentielle d’un filtre correspond à la transformée de Fourier de sa réponse impulsionnelle c-à-d</p>
+<div class="math notranslate nohighlight">
+\[H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h[n]e^{-j\omega n}\]</div>
+</section>
+<section id="representation">
+<h3>Représentation<a class="headerlink" href="#representation" title="Permalink to this heading">#</a></h3>
+<p>La réponse frequentielle <span class="math notranslate nohighlight">\(H(e^{j\omega})\)</span> est généralement une quantité complexe qu’il est possible de décomposer sous la forme</p>
+<div class="math notranslate nohighlight">
+\[H(e^{j\omega})=|H(e^{j\omega})| e^{j Arg[H(e^{j\omega})]},\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|H(e^{j\omega})|\)</span> désigne le module de la réponse fréquentielle,</p></li>
+<li><p><span class="math notranslate nohighlight">\(Arg[H(e^{j\omega})]\)</span> désigne l’argument de la réponse fréquentielle.</p></li>
+</ul>
+<p>Pour analyser le comportement d’un filtre, il est utile de représenter le module et l’argument de la réponse fréquentielle en fonction de <span class="math notranslate nohighlight">\(\omega\)</span>.
+L’affichage du module et de l’argument permet d’avoir une interprétation concrète de l’effet du filtre sur une entrée quelconque.
+En effet à la pulsation <span class="math notranslate nohighlight">\(\omega\)</span>, le filtre va appliquer un gain <span class="math notranslate nohighlight">\(|H(e^{j\omega})|\)</span> et un déphasage (retard) <span class="math notranslate nohighlight">\(Arg[H(e^{j\omega})]\)</span>.</p>
+<p>A titre d’illustration, la figure suivante présente le module et l’argument de la réponse fréquentielle d’un filtre.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">dlti</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.065</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.065</span><span class="p">]</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.143</span><span class="p">,</span> <span class="mf">0.413</span><span class="p">]</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">dlti</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">Hjw</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">freqresp</span><span class="p">()</span>
+
+<span class="c1"># affichage du module</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Hjw</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Module $H(e^{j\omega})$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">])</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">Hjw</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Pulsation normalisée [rad/sample]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Argument $Arg[H(e^{j\omega})]$ [deg]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/analyse-4.png" class="plot-directive" src="../../_images/analyse-4.png" />
+</figure>
+<p>Nous observons ici que le filtre se comporte comme un filtre passe-bas. Lorsque l’argument est égal à <span class="math notranslate nohighlight">\(Arg[H(e^{j\omega})]=-\omega \tau\)</span>, ce qui n’est pas le cas ici, le filtre est dit <strong>à phase linéaire</strong>.
+En pratique, cette propriété est souvent recherchée car elle évite la présence de distorsion de phase.</p>
+</section>
+<section id="lien-avec-l-equation-aux-differences">
+<h3>Lien avec l’équation aux différences<a class="headerlink" href="#lien-avec-l-equation-aux-differences" title="Permalink to this heading">#</a></h3>
+<p>Pour les filtres décrits par une équation aux différences, la réponse fréquentielle peut s’exprimer en fonction de la transformée de Fourier des coefficients <span class="math notranslate nohighlight">\(a_l\)</span> et <span class="math notranslate nohighlight">\(b_m\)</span> du filtre.
+Spécifiquement, nous obtenons :</p>
+<div class="math notranslate nohighlight">
+\[H(e^{j\omega})=\frac{Y(e^{j\omega})}{X(e^{j\omega})}=\frac{\sum_{k=0}^{M}b_m e^{-j\omega k}}{\sum_{l=0}^{N}a_l e^{-j\omega l}}=\frac{B(e^{j\omega})}{A(e^{j\omega})}\]</div>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Introduction</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="FIR_IIR.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Filtres FIR et IIR</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, V. Choqueuse.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

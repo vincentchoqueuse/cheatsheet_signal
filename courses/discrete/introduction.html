@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Introduction &#8212; pydata_theme  documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analyse de filtres" href="analyse.html" />
+    <link rel="prev" title="Numérique" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Cours
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../links.html">
+  Links
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/vincentchoqueuse/cheatsheet_signal" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../analog/index.html">
+   Analogique
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/summary.html">
+     Résumé
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/fourier_list.html">
+     Liste des Transformées de Fourier
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analog/signals.html">
+     Signaux Usuels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Numérique
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analyse.html">
+     Analyse de filtres
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="FIR_IIR.html">
+     Filtres FIR et IIR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design.html">
+     Synthèse de Filtres
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelisation">
+   Modélisation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definitions">
+     Définitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proprietes">
+     Propriétés
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equation-aux-differences">
+     Equation aux différences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problematiques">
+   Problématiques
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
+<p>Un filtre permet de “sculpter” un signal en supprimant ou en accentuant certaines composantes fréquentielles.
+Alors que les filtres analogiques reposent sur la conception de circuits électroniques, les filtres numériques eux sont souvent plus simples à mettre en oeuvre car ils reposent sur des algorithmes pouvant être codés dans n’importe quel langage de programmation
+(même si le C reste la norme pour les applications embarquées). Dans cette section, nous allons nous intéresser à la synthèse de filtres numériques à une entrée et une sortie. Ces filtres sont couramment utilisés dans un large panel d’applications.</p>
+<section id="modelisation">
+<h2>Modélisation<a class="headerlink" href="#modelisation" title="Permalink to this heading">#</a></h2>
+<p>Un filtre numérique peut être modélisé par une fonction mathématique prenant en entrée un signal numérique et renvoyant en sortie un signal numérique.</p>
+<p>Mathématiquement, un signal numérique est représenté par une suite de nombres où le <span class="math notranslate nohighlight">\(n^{ieme}\)</span> nombre de la suite est noté <span class="math notranslate nohighlight">\(x[n]\)</span> (<span class="math notranslate nohighlight">\(n \in \mathbb{Z}\)</span>).</p>
+<p>Dans ce document, nous allons nous intéresser à la classe des filtres dits linéaires et invariant dans le temps (LTI).</p>
+<section id="definitions">
+<h3>Définitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
+<p>Un filtre LTI respecte les deux propriétés suivantes:</p>
+<ul class="simple">
+<li><p>Linéarité: Si l’entrée du filtre est égale à <span class="math notranslate nohighlight">\(x[n]=\alpha x_1[n]+\beta x_2[n]\)</span>, alors la sortie sera égale à <span class="math notranslate nohighlight">\(y[n]=\alpha y_1[n]+\beta y_2[n]\)</span>.</p></li>
+<li><p>Invariance dans le temps: Si l’entrée du filtre est égale à <span class="math notranslate nohighlight">\(x[n]=x_1[n-\tau]\)</span> (<span class="math notranslate nohighlight">\(\tau \in \mathbb{Z}\)</span>), alors la sortie sera égale à <span class="math notranslate nohighlight">\(y[n]=y_1[n-\tau]\)</span>.</p></li>
+</ul>
+<p>Un filtre LTI est entièrement décrit par sa réponse à une entrée de type impulsion (<span class="math notranslate nohighlight">\(x[n]=\delta[n]\)</span>). La réponse à une entrée de type impulsion est appelée réponse impulsionnelle et est notée <span class="math notranslate nohighlight">\(h[n]\)</span>.</p>
+</section>
+<section id="proprietes">
+<h3>Propriétés<a class="headerlink" href="#proprietes" title="Permalink to this heading">#</a></h3>
+<p>Lorsqu’un signal <span class="math notranslate nohighlight">\(x[n]\)</span> est envoyé à l’entrée d’un filtre LTI, la sortie s’exprime sous la forme</p>
+<div class="math notranslate nohighlight">
+\[y[n]=x[n]*h[n] \triangleq \sum_{k=-\infty}^{\infty}x[k]h[n-k]\]</div>
+<p>où <span class="math notranslate nohighlight">\(*\)</span> désigne le produit de convolution et <span class="math notranslate nohighlight">\(h[n]\)</span> correspond à la réponse impulsionnelle du filtre.</p>
+</section>
+<section id="equation-aux-differences">
+<h3>Equation aux différences<a class="headerlink" href="#equation-aux-differences" title="Permalink to this heading">#</a></h3>
+<p>Une grande partie des filtres LTI peut s’exprimer à partir d’une équation aux différences</p>
+<div class="math notranslate nohighlight">
+\[y[n]=\sum_{m=0}^{M}b_m x[n-m]-\sum_{l=1}^{L}a_l y[n-l]\]</div>
+<ul class="simple">
+<li><p>les coefficients réels <span class="math notranslate nohighlight">\(b_m\)</span> (<span class="math notranslate nohighlight">\(m=0,\cdots,M\)</span>) correspondent aux coefficients de la partie non récursive du filtre,</p></li>
+<li><p>les coefficients réels <span class="math notranslate nohighlight">\(a_l\)</span> (<span class="math notranslate nohighlight">\(l=1,\cdots,L\)</span>) correspondent respectivement aux coefficients de la partie récursive du filtre.</p></li>
+</ul>
+<p>Notons que le coefficient multipliant <span class="math notranslate nohighlight">\(y[n]\)</span> est implicitement égal à <span class="math notranslate nohighlight">\(a_0=1\)</span>.
+L’ordre du filtre est défini comme étant la plus grande valeur entre <span class="math notranslate nohighlight">\(M\)</span> et <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<p>La réponse impulsionnelle d’un filtre décrit par une équation aux différences s’obtient en posant <span class="math notranslate nohighlight">\(x[n]=\delta[n]\)</span>
+dans l’équation aux différences. En fonction des coefficients <span class="math notranslate nohighlight">\(a_k\)</span>, il est alors possible de définir deux grandes catégories de filtres:</p>
+<ul class="simple">
+<li><p>les filtres à Réponse Impulsionnelle Finie (FIR) pour lesquels <span class="math notranslate nohighlight">\(a_l=0\)</span> pour tout <span class="math notranslate nohighlight">\(l&gt;0\)</span>,</p></li>
+<li><p>les filtres à Réponse Impulsionnelle Infinie (IIR) pour lesquels il existe au moins une valeur de <span class="math notranslate nohighlight">\(l\)</span> (<span class="math notranslate nohighlight">\(l&gt;0\)</span>) telle que <span class="math notranslate nohighlight">\(a_l\ne 0\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="problematiques">
+<h2>Problématiques<a class="headerlink" href="#problematiques" title="Permalink to this heading">#</a></h2>
+<p>Dans les pages suivantes, nous allons traiter les problématiques suivantes.</p>
+<ul class="simple">
+<li><p>Connaissant la valeur des coefficients <span class="math notranslate nohighlight">\(b_m\)</span> et <span class="math notranslate nohighlight">\(a_l\)</span>, est-il possible de comprendre l’effet d’un filtre sur une entrée quelconque <span class="math notranslate nohighlight">\(x[n]`\)</span>  ?</p></li>
+<li><p>Est-il possible de déterminer les coefficients <span class="math notranslate nohighlight">\(b_m\)</span> et <span class="math notranslate nohighlight">\(a_l\)</span> d’un filtre à partir d’un ensemble de spécifications (fréquentielles ou temporelles) ?</p></li>
+</ul>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Numérique</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="analyse.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Analyse de filtres</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, V. Choqueuse.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
