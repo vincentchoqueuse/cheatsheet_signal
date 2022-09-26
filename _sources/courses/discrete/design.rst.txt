@@ -94,7 +94,7 @@ Fenêtres de pondération
     window_name_list = ["boxcar", "hamming", "blackman"]
 
     for window_name in window_name_list:
-        w = get_window(window_name, N)
+        w = get_window(window_name, N, fftbins=False)
         plt.plot(w, label=window_name)
 
     plt.grid()
@@ -133,7 +133,7 @@ une attenuation importante dans la bande rejetée à cause de la présence de lo
     h_d = (w_c/np.pi)*np.sinc((w_c/np.pi)*(n_vect-int(N/2)))
 
     for window_name in window_name_list:
-        w = get_window(window_name, N)
+        w = get_window(window_name, N, fftbins=False)
         h = w*h_d
         f, Hjw = freqz(h, fs=fs)
         plt.semilogy(f, np.abs(Hjw), label=window_name)
