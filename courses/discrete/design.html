@@ -187,7 +187,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
-   Numérique
+   Filtrage Numérique
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -202,7 +202,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analyse.html">
-     Analyse de filtres
+     Analyse de Filtres
     </a>
    </li>
    <li class="toctree-l2">
@@ -309,37 +309,42 @@
 <div class="math notranslate nohighlight">
 \[H_d(e^{j\omega})=|H_d(e^{j\omega})|e^{-j\omega N/2}\]</div>
 <p>Pour obtenir les coefficient du filtre FIR, nous allons procéder de la manière suivante :</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>Calcul de la réponse impulsionnelle théorique <span class="math notranslate nohighlight">\(h_d[n]\)</span>,</p></li>
-<li><p>Troncature temporelle de la réponse impulsionnelle pour ne conserver que <span class="math notranslate nohighlight">\(N\)</span> éléments,</p></li>
+<li><p>Troncature temporelle de la réponse impulsionnelle,</p></li>
 <li><p>[optionnel] Application d’une fenêtre de pondération temporelle pour limiter l’effet de la troncature temporelle.</p></li>
-</ul>
+</ol>
 </section>
 <section id="exemple">
 <h3>Exemple<a class="headerlink" href="#exemple" title="Permalink to this heading">#</a></h3>
 <section id="cahier-des-charges">
 <h4>Cahier des charges<a class="headerlink" href="#cahier-des-charges" title="Permalink to this heading">#</a></h4>
-<p>Pour illustrer cette partie, nous allons synthétiser le filtre dont le module de la réponse fréquentielle est donné par :</p>
+<p>Pour illustrer cette partie, nous allons synthétiser un filtre d’ordre N dont le module de la réponse fréquentielle est donné par :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}|H_d(e^{j\omega})|&amp;=\left\{\begin{array}{cl}
 1&amp;\textrm{, pour } |\omega| \le \omega_c\\
 0 &amp;\textrm{, ailleurs}\end{array}\right.\end{split}\]</div>
-<p>où <span class="math notranslate nohighlight">\(\omega_c\)</span> désigne la pulsation de coupure normalisée par rapport à la pulsation d’échantillonnage <span class="math notranslate nohighlight">\(\omega_e\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\omega_c\)</span> désigne la pulsation de coupure normalisée (<span class="math notranslate nohighlight">\(\omega_c = 2\pi(f_c/f_s)\)</span> où <span class="math notranslate nohighlight">\(f_c\)</span> désigne la fréquence de coupure [Hz] et <span class="math notranslate nohighlight">\(f_s\)</span> désigne la fréquence d’échantillonnage [Hz]).</p></li>
+</ul>
 <p>Ce filtre est un filtre passe-bas <strong>en mur de briques</strong> (pente infinie). En imposant une phase linéaire, la
-réponse fréquentielle de ce filtre est donnée par <span class="math notranslate nohighlight">\(H_d(e^{j\omega})=|H_d(e^{j\omega})|e^{-j\omega N/2}\)</span></p>
+réponse fréquentielle de ce filtre est donnée par</p>
+<div class="math notranslate nohighlight">
+\[H_d(e^{j\omega})=|H_d(e^{j\omega})|e^{-j\omega N/2}\]</div>
 </section>
 <section id="reponse-impulsionnelle">
 <h4>Réponse Impulsionnelle<a class="headerlink" href="#reponse-impulsionnelle" title="Permalink to this heading">#</a></h4>
-<p>La réponse impulsionnelle du filtre s’obtient en utilisant l’expression</p>
+<p>La réponse impulsionnelle du filtre s’obtient en utilisant l’expression :</p>
 <div class="math notranslate nohighlight">
 \[h_d[n]= \frac{1}{2\pi}\int_{-\pi}^{\pi} H(e^{j\omega})e^{j\omega n}d\omega\]</div>
-<p>Après quelques calculs, nous obtenons</p>
+<p>Après quelques calculs, nous obtenons :</p>
 <div class="math notranslate nohighlight">
 \[h_d[n] =\frac{\sin\left(\omega_c (n-N/2)\right)}{\pi (n-N/2)}\]</div>
-<p>En pratique, nous allons conserver uniquement N échantillons. La réponse impulsionnelle utilisée s’exprime alors sous la forme</p>
+<p>Pour obtenir un filtre d’ordre N, nous allons conserver uniquement les N+1 premiers échantillons de la réponse impulsionnelle.
+La réponse impulsionnelle utilisée s’exprime alors sous la forme :</p>
 <div class="math notranslate nohighlight">
 \[h[n] = w[n]h_d[n]\]</div>
-<p>où <span class="math notranslate nohighlight">\(w[n]\)</span> est une fenêtre de pondération telle que <span class="math notranslate nohighlight">\(w[n]=0\)</span> si <span class="math notranslate nohighlight">\(n&lt;0\)</span> ou <span class="math notranslate nohighlight">\(n\ge N\)</span>.</p>
+<p>où <span class="math notranslate nohighlight">\(w[n]\)</span> est une fenêtre de pondération telle que <span class="math notranslate nohighlight">\(w[n]=0\)</span> si <span class="math notranslate nohighlight">\(n&lt;0\)</span> ou <span class="math notranslate nohighlight">\(n&gt; N\)</span>.</p>
 </section>
 <section id="fenetres-de-ponderation">
 <h4>Fenêtres de pondération<a class="headerlink" href="#fenetres-de-ponderation" title="Permalink to this heading">#</a></h4>
@@ -373,15 +378,16 @@ réponse fréquentielle de ce filtre est donnée par <span class="math notransla
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">get_window</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">N</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">window_name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;boxcar&quot;</span><span class="p">,</span> <span class="s2">&quot;hamming&quot;</span><span class="p">,</span> <span class="s2">&quot;blackman&quot;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">window_name</span> <span class="ow">in</span> <span class="n">window_name_list</span><span class="p">:</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">get_window</span><span class="p">(</span><span class="n">window_name</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">get_window</span><span class="p">(</span><span class="n">window_name</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">window_name</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$n$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -403,19 +409,19 @@ une attenuation importante dans la bande rejetée à cause de la présence de lo
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">freqz</span><span class="p">,</span> <span class="n">get_window</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">N</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">f_c</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">44100</span>
 
 <span class="n">w_c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">f_c</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
 <span class="n">window_name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;boxcar&quot;</span><span class="p">,</span> <span class="s2">&quot;hamming&quot;</span><span class="p">,</span> <span class="s2">&quot;blackman&quot;</span><span class="p">]</span>
 
-<span class="n">n_vect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">n_vect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># be careful to the definition of the sinc function (see documentation)</span>
-<span class="n">h_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">w_c</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">((</span><span class="n">w_c</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n_vect</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">h_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">w_c</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">((</span><span class="n">w_c</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n_vect</span><span class="o">-</span><span class="nb">int</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
 
 <span class="k">for</span> <span class="n">window_name</span> <span class="ow">in</span> <span class="n">window_name_list</span><span class="p">:</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">get_window</span><span class="p">(</span><span class="n">window_name</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">get_window</span><span class="p">(</span><span class="n">window_name</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">h_d</span>
     <span class="n">f</span><span class="p">,</span> <span class="n">Hjw</span> <span class="o">=</span> <span class="n">freqz</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Hjw</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">window_name</span><span class="p">)</span>

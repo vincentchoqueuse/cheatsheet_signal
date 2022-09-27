@@ -1,20 +1,22 @@
-Analyse de filtres
+Analyse de Filtres
 ==================
 
-Une grande partie des filtres LTI peut s'exprimer à partir d'une équation aux différences
+
+Une grande partie des filtres LTI peut être modélisée par une équation de récurrence :
 
 .. math ::
     
     y[n]=\sum_{m=0}^{M}b_m x[n-m]-\sum_{l=1}^{L}a_l y[n-l]
 
 
-Dans cette section, nous allons introduire les outils nécessaires pour analyser ce type de filtre.
+Dans cette section, nous allons introduire des outils pour comprendre comment la valeur des coefficients :math:`b_m` et :math:`a_l`
+impacte la sortie du filtre.
 
 Transformée en Z
 ----------------
 
 Définition 
-``````````
+++++++++++
 
 La transformée en :math:`\mathcal{Z}` d'une suite numérique :math:`x[n]`` est définie par l'équation
 
@@ -22,17 +24,17 @@ La transformée en :math:`\mathcal{Z}` d'une suite numérique :math:`x[n]`` est 
 
     X(z) \triangleq \sum_{n=-\infty}^{\infty}x[n]z^{-n}
 
-où :math:`z` est une variable complexe.
+* :math:`z` est une variable complexe.
 
-Il est important de noter que la transformée de 2d'un signal ne converge pas nécessairement pour toutes les valeurs :math:`z \in \mathbb{Z}`.
-Il est alors nécessaire de préciser la région de convergence (ROC) pour laquelle la série converge c-à-d les valeurs de :math:`z`` telles que :math:`|X(z)|<\infty`. 
+Il est important de noter que la transformée de Z d'un signal ne converge pas nécessairement pour toutes les valeurs :math:`z \in \mathbb{Z}`.
+Il est alors nécessaire de préciser la région de convergence (ROC) pour laquelle la série converge c-à-d les valeurs de :math:`z` telles que :math:`|X(z)|<\infty`. 
 
 Tables des transformées 
-```````````````````````
++++++++++++++++++++++++
 
 A titre d'illustration, le tableau suivant présente les transformées en Z de plusieurs signaux et leurs regions de convergence associées.
 
-.. list-table:: Quelques transformées en Z
+.. list-table::
    :widths: 33 33 33
    :header-rows: 1
 
@@ -70,7 +72,7 @@ A titre d'illustration, le tableau suivant présente les transformées en Z de p
 Propriétés 
 ``````````
 
-La transformée en 2 possède les propriétés suivantes (les réciproques étant également vraies):
+La transformée en Z possède les propriétés suivantes :
 
 * Linéarité: Si :math:`y[n]=\alpha x_1[n]+\beta x_2[n]`, alors :math:`Y(z)=\alpha X_1(z)+\beta X_2(z)`.
 * Décalage temporel: Si :math:`y[n]=x[n-m]` (:math:`m \in \mathbb{Z}`), alors :math:`Y(z)=X(z)z^{-m}`.
@@ -79,37 +81,42 @@ La transformée en 2 possède les propriétés suivantes (les réciproques étan
 * Théorème de la valeur finale: :math:`\lim_{n\to \infty} x[n]=\lim_{z\to 1}(z-1)X(z)`.
 
 
-La propriété liée au décalage temporel indique qu'un retard d'un échantillon dans le domaine temporel revient à multiplier la transformée en Z par :math:`z^{-1}`.
-En utilisant cette propriété, l'équation aux différences peut être représentée graphiquement par un schéma bloc où les blocs de fonction de transfert :math:`z^{-1}` introduisent un retard d'un échantillon. 
-A titre d'exemple, la figure suivante présente le schéma bloc du filtre 1.
-
-
-La propriété liée à la convolution montre l'importance de la transformée en Z de la réponse impulsionnelle, :math:`H(z)`.
-Cette transformée en Z est appelée fonction de transfert du filtre. 
-
 Fonction de transfert 
 ---------------------
 
-La fonction de transfert d'un filtre correspond à la transformée en Z de sa réponse impulsionnelle c-à-d
+ La fonction de transfert d'un filtre correspond à la transformée en Z de sa réponse impulsionnelle c-à-d
 
 .. math ::
 
-    H(z) =\sum_{n=-\infty}^{\infty}h[n]z^{-n}
+    H(z) \triangleq \sum_{n=-\infty}^{\infty}h[n]z^{-n}
 
-La propriété liée à la convolution montre que la fonction de transfert d'un filtre s'exprime également sous la forme :math:`H(z)=Y(z)/X(z)`.
-Pour un filtre décrit par une équation aux différences, cette propriété permet d'exprimer la fonction de transfert du filtre en fonction des coefficients des parties récursive :math:`a_l` et non-recursive :math:`b_m`` du filtre.
+* :math:`h[n]=T\{\delta[n]\}` correspond à la réponse impulsionnelle du filtre.
+
+La propriété liée à la convolution montre que la fonction de transfert d'un filtre peut également s'exprimer sous la forme 
+
+.. math ::
+    
+    H(z)=\frac{Y(z)}{X(z)}
+
+* :math:`X(z)`: transformée en Z de l'entrée,
+* :math:`Y(z)`: transformée en Z de la sortie.
+
+Pour un filtre décrit par une équation de récurrence, cette propriété permet d'exprimer facilement la fonction de transfert du filtre en fonction des coefficients des parties récursive :math:`a_l` et non-recursive :math:`b_m`` du filtre.
 
 Forme polynomiale 
-`````````````````
++++++++++++++++++
 
-La fonction de transfert d'un filtre numérique décrit par une équation aux différences s'exprime sous la forme:
+La fonction de transfert d'un filtre numérique décrit par une équation de récurrence s'exprime sous la forme:
 
 .. math ::
 
     H(z)=\frac{B(z)}{A(z)}=\frac{\sum_{m=0}^{M}b_m z^{-m}}{\sum_{l=0}^{L}a_l z^{-l}}
 
+* :math:`a_0 = 1` (forme normalisée)
+
 Exemple 
 ```````
+
 Considérons le filtre décrit par l'équation de récurrence suivante :
 
 .. math ::
@@ -122,10 +129,10 @@ Il est possible de montrer que la fonction de transfert de ce filtre est donnée
 
     H(z)=\frac{0.065+0.13 z^{-1}+0.065z^{-2}}{1-1.143z^{-1}+0.413z^{-2}}.
 
-Par exemple, si l'entrée du filtre est un échelon unitaire, la transformée en Z de la sortie sera égale à 
+La transformée en Z de la sortie s'obtient en évaluant :math:`Y(z)=H(z)X(z)`. A titre d'exemple, si l'entrée du filtre est un échelon unitaire (réponse indicielle), la transformée en Z de la sortie sera égale à 
 :math:`Y(z)=H(z)/(1-z^{-1})`. En utilisant le théorème de la valeur finale, nous pouvons alors anticiper qu'en temporel 
-la valeur finale sera égale à :math:`\lim_{n\to\infty}y[n]=H(1)=0.962`. La figure suivante présente la réponse du filtre 1 
-lorsqu'un échelon unitaire est envoyé en entrée. Nous pouvons constater qu'effectivement la valeur finale est bien égale à :math:`0.962`.
+la valeur finale sera égale à :math:`\lim_{n\to\infty}y[n]=H(1)=0.962`. Pour confirmer ce résultat, la figure suivante présente la réponse du filtre  
+lorsqu'un échelon unitaire est envoyé en entrée. Nous pouvons constater que la valeur finale est bien égale à :math:`0.962`.
 
 .. plot::
     :context: close-figs
@@ -148,24 +155,24 @@ lorsqu'un échelon unitaire est envoyé en entrée. Nous pouvons constater qu'ef
     plt.xlim([-1, 50])
 
 Forme factorisée 
-````````````````
+++++++++++++++++
 
-La fonction de transfert :math:`H(z)` peut présenter des "pics" et des "vallées" pour certaines valeurs de :math:`z`.
-Pour mettre en évidence ces comportements singuliers, il est possible de réexprimer la fonction de transfert sous une forme factorisée. 
+Pour mettre en évidence les comportements singuliers de la fonction de transfert pour différentes valeurs de :math:`z`, il est possible de réexprimer la fonction de transfert sous une forme factorisée. 
 
-La forme factorisée donne explicitement les valeurs de :math:`z`` pour lesquelles :math:`H(z)` tend vers 0 (zéros) 
-et les valeurs de :math:`z` pour lesquelles :math:`H(z)`` tend vers l'infini (pôles). 
+La forme factorisée présente explicitement les valeurs de :math:`z` pour lesquelles :math:`H(z)` tend vers 0 (zéros) et les valeurs de :math:`z` pour lesquelles :math:`H(z)` tend vers l'infini (pôles). 
 
 .. math ::
     
-    H(z)=\left(\frac{b_0}{a_0}\right)\frac{\prod_{m=1}^{M}(1-z_m z^{-1})}{\prod_{l=1}^{L}(1-p_l z^{-1})}
+    H(z)=G \frac{\prod_{m=1}^{M}(1-z_m z^{-1})}{\prod_{l=1}^{L}(1-p_l z^{-1})}
 
-* les valeurs :math:`z_m` correspondent respectivement aux zéros de la fonction de transfert,
-* les valeurs :math:`p_l` correspondent respectivement aux pôles de la fonction de transfert.
+* :math:`G` est un facteur de gain,
+* les valeurs :math:`z_m` correspondent respectivement aux **zéros** de la fonction de transfert,
+* les valeurs :math:`p_l` correspondent respectivement aux **pôles** de la fonction de transfert.
 
-En pratique, les valeurs des pôles et des zéros s'obtiennent le plus souvent en utilisant des algorithmes numériques.
-A titre d'illustration, la fonction Python :code:`root` permet d'établir que le filtre 1 possède un zéro double en :math:`z=-1` et deux pôles complexes conjugués en :math:`z=0.57\pm 0.29j`.
 Notons que comme les coefficients :math:`a_l` et :math:`b_m` sont réels, les pôles et zéros complexes sont nécessairement réels ou complexe-conjugués. 
+
+Répresentation 
+``````````````
 
 Il est courant de représenter la localisation des pôles et des zéros dans le plan complexe. Par convention, les pôles sont indiqués avec un :math:`\times` et les zéros avec un :math:`\circ`.
 La figure suivante présente la localisation des pôles et des zéros pour le filtre 1.
@@ -196,25 +203,28 @@ La figure suivante présente la localisation des pôles et des zéros pour le fi
 Stabilité 
 ---------
 
-La localisation des pôles joue un rôle de premier plan sur la propriété de stabilité du filtre. De manière formelle, un filtre est dit stable si sa réponse impulsionnelle est absolument sommable c-à-d 
+Définition
+++++++++++
+
+un filtre est dit **stable** si sa réponse impulsionnelle est absolument sommable c-à-d 
 
 .. math :: 
     
     \sum_{n=-\infty}^{\infty}|h[n]|<\infty
 
 Propriété 
-`````````
++++++++++
 
-Un filtre est stable si tous les pôles de sa fonction de transfert sont inclus dans le cercle de rayon unité c-à-d si pour tout :math:`l`` 
+Un filtre est stable si tous les pôles de sa fonction de transfert sont inclus dans le cercle de rayon unité c-à-d si pour tout :math:`l=1,\cdots, L` 
 
 .. math ::
 
     |p_l|\le 1
 
 Exemple 
-```````
++++++++
 
-La figure suivtante présente la localisation des pôles et des zéros ainsi que la réponse impulsionnelle de deux filtres IIR. 
+La figure suivante présente la localisation des pôles et des zéros ainsi que la réponse impulsionnelle de deux filtres IIR. 
 
 
 .. plot::
@@ -229,41 +239,41 @@ La figure suivtante présente la localisation des pôles et des zéros ainsi que
     H2 = dlti([1, -0.75], [-0.5, 1.2+0.3j, 1.2-0.3j], 5)
     H_list = [H1, H2]
 
-    plt.figure()
+
 
     for index, H in enumerate(H_list):
         
+        fig = plt.figure(figsize=(8,4))
+
         # affichage des poles et zeros
-        ax1 = plt.subplot(2, 2, 1+2*index)
-        plt.plot(np.real(H.zeros), np.imag(H.zeros),"o")
-        plt.plot(np.real(H.poles), np.imag(H.poles),"x")
-        plt.grid()
-        plt.axis("equal")
-        plt.xlim([-2, 2])
-        plt.xlabel("Real Part")
-        plt.ylabel("Imag part")
+        ax1 = plt.subplot(1, 2, 1)
+        ax1.plot(np.real(H.zeros), np.imag(H.zeros),"o")
+        ax1.plot(np.real(H.poles), np.imag(H.poles),"x")
+        ax1.grid()
+        ax1.axis("equal")
+        ax1.set_xlim([-2, 2])
+        ax1.set_xlabel("Real Part")
+        ax1.set_ylabel("Imag part")
 
         # affichage de la reponse impulsionnelle
         n, y = H.impulse(n=80)
-        ax2 = plt.subplot(2, 2, 2+2*index)
-        plt.step(n, np.squeeze(y))
-        plt.grid()
-        plt.xlim([0, 80])
-        plt.xlabel("n")
-        plt.ylabel("Réponse Indicielle")
+        ax2 = plt.subplot(1, 2, 2)
+        ax2.step(n, np.squeeze(y))
+        ax2.grid()
+        ax2.set_xlim([0, 80])
+        ax2.set_xlabel("n")
+        ax2.set_ylabel("Réponse Indicielle")
 
-    plt.tight_layout()
+        fig.suptitle("Filtre {}".format(index+1))
+        plt.tight_layout()
+
+
         
 * Le premier filtre est stable car tous ses pôles sont inclus dans le cercle de rayon unité. 
 * Le second filtre est instable car il possède deux pôles pour lesquels le module est supérieur à 1. Pour ce second filtre, nous constatons que la réponse impulsionnelle semble tendre vers des valeurs infinies ( :math:`10^8` !)
 
 Analyse Fréquentielle 
 ---------------------
-
-Le domaine fréquentielle est très utilisé pour analyser le comportement des filtres LTI. 
-Le succès de ce domaine d'analyse est principalement lié au fait que la réponse d'un filtre à une exponentielle complexe de pulsation :math:`\omega`
-est une exponentielle complexe de même pulsation mais multipliée par un coefficient complexe. 
-Ce coefficient multiplicateur s'obtient à partir de la transformée de Fourier de la réponse impulsionnelle.
 
 Transformée de Fourier discrète
 +++++++++++++++++++++++++++++++
@@ -297,7 +307,7 @@ Réponse Fréquentielle
 Définition 
 ``````````
 
-La réponse fréquentielle d'un filtre correspond à la transformée de Fourier de sa réponse impulsionnelle c-à-d
+La réponse fréquentielle d'un filtre correspond à la transformée de Fourier de sa réponse impulsionnelle :
 
 .. math ::
 
@@ -312,10 +322,9 @@ La réponse frequentielle :math:`H(e^{j\omega})` est généralement une quantit�
 
     H(e^{j\omega})=|H(e^{j\omega})| e^{j Arg[H(e^{j\omega})]},
 
-* :math:`|H(e^{j\omega})|` désigne le module de la réponse fréquentielle,
-* :math:`Arg[H(e^{j\omega})]` désigne l'argument de la réponse fréquentielle.
+* :math:`|H(e^{j\omega})|` désigne le **module** de la réponse fréquentielle,
+* :math:`Arg[H(e^{j\omega})]` désigne l'**argument** de la réponse fréquentielle.
 
-Pour analyser le comportement d'un filtre, il est utile de représenter le module et l'argument de la réponse fréquentielle en fonction de :math:`\omega`.
 L'affichage du module et de l'argument permet d'avoir une interprétation concrète de l'effet du filtre sur une entrée quelconque. 
 En effet à la pulsation :math:`\omega`, le filtre va appliquer un gain :math:`|H(e^{j\omega})|` et un déphasage (retard) :math:`Arg[H(e^{j\omega})]`.
 
@@ -350,13 +359,10 @@ A titre d'illustration, la figure suivante présente le module et l'argument de 
     plt.tight_layout()
 
 
-Nous observons ici que le filtre se comporte comme un filtre passe-bas. Lorsque l'argument est égal à :math:`Arg[H(e^{j\omega})]=-\omega \tau`, ce qui n'est pas le cas ici, le filtre est dit **à phase linéaire**. 
-En pratique, cette propriété est souvent recherchée car elle évite la présence de distorsion de phase.
+Lien avec l'équation de récurrence
+``````````````````````````````````
 
-Lien avec l'équation aux différences
-````````````````````````````````````
-
-Pour les filtres décrits par une équation aux différences, la réponse fréquentielle peut s'exprimer en fonction de la transformée de Fourier des coefficients :math:`a_l` et :math:`b_m` du filtre.
+Pour les filtres décrits par une équation de récurrence, la réponse fréquentielle peut s'exprimer en fonction de la transformée de Fourier des coefficients :math:`a_l` et :math:`b_m` du filtre.
 Spécifiquement, nous obtenons :
 
 .. math ::

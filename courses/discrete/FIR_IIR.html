@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Synthèse de Filtres" href="design.html" />
-    <link rel="prev" title="Analyse de filtres" href="analyse.html" />
+    <link rel="prev" title="Analyse de Filtres" href="analyse.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -187,7 +187,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
-   Numérique
+   Filtrage Numérique
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -202,7 +202,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analyse.html">
-     Analyse de filtres
+     Analyse de Filtres
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -242,23 +242,30 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contexte">
-   Contexte
+  <a class="reference internal nav-link" href="#classification">
+   Classification
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modelisation">
-     Modélisation
+    <a class="reference internal nav-link" href="#filtre-fir">
+     Filtre FIR
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#filtre-fir">
-       Filtre FIR
+      <a class="reference internal nav-link" href="#proprietes">
+       Propriétés
       </a>
      </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filtre-iir">
+     Filtre IIR
+    </a>
+    <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#filtre-iir">
-       Filtre IIR
+      <a class="reference internal nav-link" href="#id1">
+       Propriétés
       </a>
      </li>
     </ul>
@@ -271,8 +278,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proprietes">
-   Propriétés
+  <a class="reference internal nav-link" href="#comparaison">
+   Comparaison
   </a>
  </li>
 </ul>
@@ -296,19 +303,32 @@
                 
   <section id="filtres-fir-et-iir">
 <h1>Filtres FIR et IIR<a class="headerlink" href="#filtres-fir-et-iir" title="Permalink to this heading">#</a></h1>
-<section id="contexte">
-<h2>Contexte<a class="headerlink" href="#contexte" title="Permalink to this heading">#</a></h2>
-<section id="modelisation">
-<h3>Modélisation<a class="headerlink" href="#modelisation" title="Permalink to this heading">#</a></h3>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">#</a></h2>
 <section id="filtre-fir">
-<h4>Filtre FIR<a class="headerlink" href="#filtre-fir" title="Permalink to this heading">#</a></h4>
+<h3>Filtre FIR<a class="headerlink" href="#filtre-fir" title="Permalink to this heading">#</a></h3>
+<p>Un filtre FIR (Finite Impulse Response) peut être décrit par :</p>
 <div class="math notranslate nohighlight">
 \[y[n]=\sum_{m=0}^{M}b_m x[n-m]\]</div>
+<p>Ce type de filtre est dit fini, car sa réponse impulsionnelle se stabilisera ultimement à zéro.
+Un filtre FIR est non récursif, c’est-à-dire que la sortie dépend uniquement de l’entrée du signal, il n’y a pas de contre-réaction.</p>
+<section id="proprietes">
+<h4>Propriétés<a class="headerlink" href="#proprietes" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Les coefficients du filtre  sont égaux à la réponse impulsionnelle du filtre c-à-d <span class="math notranslate nohighlight">\(b[n]=h[n]\)</span>.</p></li>
+<li><p>La sortie du filtre est donnée par la convolution du signal d’entrée avec les coefficients (ou réponse impulsionnelle) du filtre c-à-d <span class="math notranslate nohighlight">\(y[n] = b[n]*x[n]\)</span>.</p></li>
+</ul>
+</section>
 </section>
 <section id="filtre-iir">
-<h4>Filtre IIR<a class="headerlink" href="#filtre-iir" title="Permalink to this heading">#</a></h4>
+<h3>Filtre IIR<a class="headerlink" href="#filtre-iir" title="Permalink to this heading">#</a></h3>
+<p>Un filtre IIR (Infinite Impulse Response) peut être décrit par :</p>
 <div class="math notranslate nohighlight">
 \[y[n]=\sum_{m=0}^{M}b_m x[n-m]-\sum_{l=1}^{L}a_l y[n-l]\]</div>
+<section id="id1">
+<h4>Propriétés<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>La réponse impulsionnelle d’un filtre IIR ne s’annule jamais définitivement. Ce type de filtre est récursif car la sortie dépend à la fois du signal d’entrée et du signal de sortie. Nous parlons également de la présence d’une boucle de contre-réaction (feedback).
+Les filtres IIR sont principalement synthétisés en numérisant des filtres analogiques (Butterworth, Tchebychev, Bessel, Elliptique).</p>
 </section>
 </section>
 <section id="implementation">
@@ -327,10 +347,9 @@
 </div>
 </section>
 </section>
-<section id="proprietes">
-<h2>Propriétés<a class="headerlink" href="#proprietes" title="Permalink to this heading">#</a></h2>
-<table class="table" id="id1">
-<caption><span class="caption-text">Comparaison des filtres FIR et IIR</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<section id="comparaison">
+<h2>Comparaison<a class="headerlink" href="#comparaison" title="Permalink to this heading">#</a></h2>
+<table class="table">
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
@@ -361,9 +380,9 @@
 </tr>
 </tbody>
 </table>
-<p>Le tableau montre que les filtres FIR possèdent moins d’inconvénients que les filtres IIR. Néanmoins, pour un même ordre N, les filtres IIR
-permettent généralement d’obtenir au niveau de la réponse fréquentielle des pentes nettement plus importantes. Pour un gabarit fréquentiel donné, l’implémentation
-d’un filtre IIR présentera donc une complexité calculatoire moindre.</p>
+<p>Le tableau montre que les filtres FIR semblent posséder moins d’inconvénients que les filtres IIR. Néanmoins, pour un même ordre N, les filtres IIR
+permettent généralement d’obtenir des pentes nettement plus importantes au niveau de la réponse fréquentielle. Pour un gabarit fréquentiel donné, l’implémentation
+d’un filtre IIR présentera donc une complexité calculatoire plus faible.</p>
 </section>
 </section>
 
@@ -379,7 +398,7 @@ d’un filtre IIR présentera donc une complexité calculatoire moindre.</p>
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Analyse de filtres</p>
+          <p class="prev-next-title">Analyse de Filtres</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="design.html" title="next page">

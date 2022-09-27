@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Numérique &#8212; pydata_theme  documentation</title>
+    <title>Filtrage Numérique &#8212; pydata_theme  documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -187,7 +187,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Numérique
+   Filtrage Numérique
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -202,7 +202,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analyse.html">
-     Analyse de filtres
+     Analyse de Filtres
     </a>
    </li>
    <li class="toctree-l2">
@@ -235,9 +235,29 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#avant-propos">
+   Avant Propos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-des-matieres">
+   Table des matières
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   Réferences
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -255,16 +275,19 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="numerique">
-<h1>Numérique<a class="headerlink" href="#numerique" title="Permalink to this heading">#</a></h1>
-<p>Ce document est un cours d’introduction au filtrage numérique destiné à un public de Master
-ayant des bases en traitement du signal.
-Globalement, ce document a deux objectifs.</p>
+  <section id="filtrage-numerique">
+<h1>Filtrage Numérique<a class="headerlink" href="#filtrage-numerique" title="Permalink to this heading">#</a></h1>
+<section id="avant-propos">
+<h2>Avant Propos<a class="headerlink" href="#avant-propos" title="Permalink to this heading">#</a></h2>
+<p>Cette section comporte un cours d’introduction au filtrage numérique destiné à un public de Master
+ayant des bases en traitement du signal. Cette section a deux objectifs.</p>
 <ul class="simple">
 <li><p>Dans un premier temps, il présente les outils mathématiques utilisés pour analyser le comportement des filtres numériques tels que la transformée en <span class="math notranslate nohighlight">\(\mathcal{Z}\)</span> et la transformée de Fourier.</p></li>
 <li><p>Dans un second temps, il décrit plusieurs techniques permettant de synthétiser un filtre numérique à partir d’un ensemble de spécifications.</p></li>
 </ul>
-<p>Le lecteur souhaitant aller plus loin dans ces deux thématiques pourra se réorienter vers la bible du filtrage numérique écrite par A. Oppenheim et R. Schafer ou bien vers l’ouvrage de J. Smith.</p>
+</section>
+<section id="table-des-matieres">
+<h2>Table des matières<a class="headerlink" href="#table-des-matieres" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -273,7 +296,7 @@ Globalement, ce document a deux objectifs.</p>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#problematiques">Problématiques</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="analyse.html">Analyse de filtres</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="analyse.html">Analyse de Filtres</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="analyse.html#transformee-en-z">Transformée en Z</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analyse.html#fonction-de-transfert">Fonction de transfert</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analyse.html#stabilite">Stabilité</a></li>
@@ -281,8 +304,8 @@ Globalement, ce document a deux objectifs.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FIR_IIR.html">Filtres FIR et IIR</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FIR_IIR.html#contexte">Contexte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FIR_IIR.html#proprietes">Propriétés</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIR_IIR.html#classification">Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIR_IIR.html#comparaison">Comparaison</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Synthèse de Filtres</a><ul>
@@ -291,6 +314,14 @@ Globalement, ce document a deux objectifs.</p>
 </li>
 </ul>
 </div>
+</section>
+<section id="references">
+<h2>Réferences<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Oppenheim, Alan V, and Schafer, Ronald W “Discrete-time signal processing”. Prentice Hall Signal Processing Series, 2010.</p></li>
+<li><p>Smith, Julius Orion. “Introduction to digital filters: with audio applications”. Vol. 2. Julius Smith, 2007.</p></li>
+</ul>
+</section>
 </section>
 
 
