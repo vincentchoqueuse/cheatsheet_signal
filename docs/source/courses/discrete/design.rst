@@ -16,9 +16,9 @@ Considérons le cas où nous souhaitons synthétiser un filtre FIR d'ordre N à 
 
 Pour obtenir les coefficient du filtre FIR, nous allons procéder de la manière suivante :
 
-* Calcul de la réponse impulsionnelle théorique :math:`h_d[n]`,
-* Troncature temporelle de la réponse impulsionnelle pour ne conserver que :math:`N` éléments,
-* [optionnel] Application d'une fenêtre de pondération temporelle pour limiter l'effet de la troncature temporelle.
+1. Calcul de la réponse impulsionnelle théorique :math:`h_d[n]`,
+2. Troncature temporelle de la réponse impulsionnelle,
+3. [optionnel] Application d'une fenêtre de pondération temporelle pour limiter l'effet de la troncature temporelle.
 
 Exemple 
 +++++++
@@ -26,7 +26,7 @@ Exemple
 Cahier des charges 
 ``````````````````
 
-Pour illustrer cette partie, nous allons synthétiser le filtre dont le module de la réponse fréquentielle est donné par :
+Pour illustrer cette partie, nous allons synthétiser un filtre d'ordre N dont le module de la réponse fréquentielle est donné par :
 
 .. math ::
 
@@ -34,33 +34,38 @@ Pour illustrer cette partie, nous allons synthétiser le filtre dont le module d
     1&\textrm{, pour } |\omega| \le \omega_c\\
     0 &\textrm{, ailleurs}\end{array}\right.
 
-où :math:`\omega_c` désigne la pulsation de coupure normalisée par rapport à la pulsation d'échantillonnage :math:`\omega_e`.
+* :math:`\omega_c` désigne la pulsation de coupure normalisée (:math:`\omega_c = 2\pi(f_c/f_s)` où :math:`f_c` désigne la fréquence de coupure [Hz] et :math:`f_s` désigne la fréquence d'échantillonnage [Hz]).
 
 Ce filtre est un filtre passe-bas **en mur de briques** (pente infinie). En imposant une phase linéaire, la 
-réponse fréquentielle de ce filtre est donnée par :math:`H_d(e^{j\omega})=|H_d(e^{j\omega})|e^{-j\omega N/2}`
+réponse fréquentielle de ce filtre est donnée par 
+
+.. math ::
+
+    H_d(e^{j\omega})=|H_d(e^{j\omega})|e^{-j\omega N/2}
 
 Réponse Impulsionnelle
 ``````````````````````
 
-La réponse impulsionnelle du filtre s'obtient en utilisant l'expression
+La réponse impulsionnelle du filtre s'obtient en utilisant l'expression :
 
 .. math ::
 
     h_d[n]= \frac{1}{2\pi}\int_{-\pi}^{\pi} H(e^{j\omega})e^{j\omega n}d\omega
 
-Après quelques calculs, nous obtenons
+Après quelques calculs, nous obtenons :
 
 .. math ::
 
     h_d[n] =\frac{\sin\left(\omega_c (n-N/2)\right)}{\pi (n-N/2)}
 
-En pratique, nous allons conserver uniquement N échantillons. La réponse impulsionnelle utilisée s'exprime alors sous la forme 
+Pour obtenir un filtre d'ordre N, nous allons conserver uniquement les N+1 premiers échantillons de la réponse impulsionnelle. 
+La réponse impulsionnelle utilisée s'exprime alors sous la forme :
 
 .. math ::
 
     h[n] = w[n]h_d[n]
 
-où :math:`w[n]` est une fenêtre de pondération telle que :math:`w[n]=0` si :math:`n<0` ou :math:`n\ge N`. 
+où :math:`w[n]` est une fenêtre de pondération telle que :math:`w[n]=0` si :math:`n<0` ou :math:`n> N`. 
 
 Fenêtres de pondération 
 ```````````````````````
@@ -90,15 +95,16 @@ Fenêtres de pondération
     from scipy.signal import get_window
     import matplotlib.pyplot as plt
 
-    N = 101
+    N = 100
     window_name_list = ["boxcar", "hamming", "blackman"]
 
     for window_name in window_name_list:
-        w = get_window(window_name, N, fftbins=False)
+        w = get_window(window_name, N+1, fftbins=False)
         plt.plot(w, label=window_name)
 
     plt.grid()
-    plt.xlim([0, N-1])
+    plt.xlim([0, N])
+    plt.xlabel("$n$")
     plt.legend()
 
 Réponse fréquentielle
@@ -121,19 +127,19 @@ une attenuation importante dans la bande rejetée à cause de la présence de lo
     from scipy.signal import freqz, get_window
     import matplotlib.pyplot as plt
 
-    N = 101
+    N = 100
     f_c = 5000
     fs = 44100
 
     w_c = 2*np.pi*(f_c/fs)
     window_name_list = ["boxcar", "hamming", "blackman"]
 
-    n_vect = np.arange(N)
+    n_vect = np.arange(N+1)
     # be careful to the definition of the sinc function (see documentation)
-    h_d = (w_c/np.pi)*np.sinc((w_c/np.pi)*(n_vect-int(N/2)))
+    h_d = (w_c/np.pi)*np.sinc((w_c/np.pi)*(n_vect-int((N+1)/2)))
 
     for window_name in window_name_list:
-        w = get_window(window_name, N, fftbins=False)
+        w = get_window(window_name, N+1, fftbins=False)
         h = w*h_d
         f, Hjw = freqz(h, fs=fs)
         plt.semilogy(f, np.abs(Hjw), label=window_name)
