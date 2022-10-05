@@ -81,13 +81,11 @@ Reconstruction
             return c_n
 
         def __call__(self, t):
-            
             L = self.L
             x = np.zeros(len(t),dtype=complex)
             for n in range(-L, L+1):
                 cn = self.get_c(n)
                 x += cn*np.exp(2j*np.pi*n*self.f0*t)
-
             return x
 
     # main program
